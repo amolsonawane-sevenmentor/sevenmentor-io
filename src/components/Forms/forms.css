@@ -1,0 +1,26 @@
+.btn-shine {
+  display: inline-block;
+  position: relative;
+  color: #f97316 !important; /* Keep the original orange color */
+  font-weight: 600;
+  font-size: inherit; /* Inherit the font size from the element */
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #c2410c, #ea580c);
+  background-size: 200%;
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}

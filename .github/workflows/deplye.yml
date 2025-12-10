@@ -1,0 +1,40 @@
+name: Deploy Performance Branch to EC2
+
+on:
+  push:
+    branches: [ performance ]  # Changed from 'main' to 'performance'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: performance  # Explicitly checkout this branch
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build Next.js app
+      run: npm run build
+      
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          cd /var/www/nextjs
+          git fetch origin performance  # Pull from performance branch
+          git checkout performance
+          git pull origin performance
+          npm install --production
+          npm run build
+          pm2 restart nextjs

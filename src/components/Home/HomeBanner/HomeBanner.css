@@ -1,0 +1,223 @@
+
+
+
+/* text animation */
+/* .animated-text-fill {
+  font: 700 2em/1 "Oswald", sans-serif;
+  letter-spacing: 0.1em;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 80px rgba(255, 120, 36, 0.5);
+  background: url("/assets/animated-text-fill.webp") repeat-y;
+  -webkit-background-clip: text;
+  background-clip: text; 
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: aitf 84s linear infinite; 
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+} */
+
+@keyframes aitf {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+/* spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+
+
+/* ///Professional text animation */
+.animate-charcter
+{
+  background-image: linear-gradient(
+  35deg,
+    #231557 0%,
+    #ff7700 29%,
+    #ff1313 67%,
+    #000859 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 3s linear infinite;
+  /* display: inline-block; */
+  text-align: center;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+/* ///Underline effect */
+@keyframes rough-notation-dash {
+  0% {
+    stroke-dashoffset: 157.451;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.rough-annotation {
+  position: absolute;
+  top: 24px; 
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  width: 100%;
+  height: 3px; 
+}
+
+.rough-annotation path {
+  animation: rough-notation-dash 1.5s ease-out forwards;
+  animation-delay: 1s; /* Delay before animation starts */
+}
+
+
+@keyframes shimmer-custom {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(280px);
+  }
+}
+
+button .shimmer-effect {
+  animation: shimmer-custom 2s ease-in infinite;
+  /* opacity: 0.9; */
+  pointer-events: none;
+}
+
+
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  .homeBanner {
+    margin-bottom: 100px !important;        /* for small screen laptops */
+  }
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 1.5s infinite;
+}
+
+@keyframes lightning {
+  0%, 100% {
+    opacity: 0.2;
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 1), 0 0 40px rgba(255, 165, 0, 0.9);
+  }
+}
+
+.animate-lightning {
+  animation: lightning 2s infinite ease-in-out;
+}
+
+
+.icon-wrapper {
+  
+ 
+  border: 2px solid #f97316; /* Gray border */
+  border-radius: 50%;
+  background-color: #f9fafb; /* Light gray background */
+  animation: repel 2s infinite; /* Add animation to the border */
+}
+
+
+
+@keyframes repel {
+  0% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.5); /* Initial shadow */
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(249, 115, 22, 0); /* Expanding effect */
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); /* Fade out */
+  }
+}
+
+
+.scrollable-wrapper {
+  max-height: 400px; /* Limit the overall height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 165, 0, 0.7) transparent;
+}
+
+.scrollable-wrapper::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+.scrollable-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 165, 0, 0.7); /* Orange scrollbar thumb */
+  border-radius: 10px;
+}
+
+.scrollable-wrapper::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.3); /* Scrollbar track color */
+}
+
+
+
+/* css for the new form dependency overiding css */
+
+.stdropdown-container{
+  border: none !important;
+  border-radius: 100% !important;
+}
+.stdropdown-tool{
+  visibility: hidden;
+}
+
+@keyframes scrollX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scrollX {
+  display: flex;
+  white-space: nowrap;
+  animation: scrollX 40s linear infinite; /* Increase duration (e.g., 20s, 30s) */
+}
+
+/* end */

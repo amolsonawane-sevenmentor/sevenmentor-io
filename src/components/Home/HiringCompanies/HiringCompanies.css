@@ -1,0 +1,29 @@
+@keyframes scrollX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollX-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-scrollX {
+  animation: scrollX 20s linear infinite;
+  display: flex; 
+  width: calc(200%); 
+}
+
+.animate-scrollX-reverse {
+  animation: scrollX-reverse 20s linear infinite;
+  display: flex;
+  width: calc(200%);
+}

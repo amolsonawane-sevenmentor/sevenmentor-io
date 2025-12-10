@@ -1,0 +1,165 @@
+.student-work-section {
+  background-image: url("/assets/NonITCourseImages/BG_patch.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 33rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Create the split background effect */
+.student-work-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33.333%;
+  height: 100%;
+  /* background-color: #f97316;  */
+  z-index: 0;
+}
+
+.student-work-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 33.333%;
+  width: 66.667%;
+  height: 100%;
+  /* background-color: #0a1f5f; */
+  z-index: 0;
+}
+
+.containerSD {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.text-contentSD {
+  padding-top: 5rem;
+  padding-left: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.apply-now-btn {
+  /* color: orange; */
+  background:white;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.apply-now-btn:hover {
+  background:rgb(234, 234, 234);
+  transform: translateY(-2px);
+}
+
+/* Embla Carousel Styles */
+.carousel-containerSD {
+  padding-top: 5rem;
+}
+
+.emblaSD {
+  overflow: hidden;
+  width: 130%;
+}
+
+.embla__containerSD {
+  display: flex;
+  align-items: center;
+}
+
+.embla__slideSD {
+  flex: 0 0 33.333%;
+  min-width: 0;
+  padding: 0 10px;
+  position: relative;
+}
+
+/* .slide-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background-color: white;
+  padding-bottom: 2rem;
+} */
+
+.slide-imageSD {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 2.5rem;
+}
+
+.slide-captionSD {
+  text-align: center;
+  font-weight: 600;
+  padding: 0.75rem 0;
+  color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .student-work-section {
+    height: auto;
+    padding: 3rem 0;
+  }
+
+  .student-work-section::before,
+  .student-work-section::after {
+    width: 100%;
+    height: 50%;
+  }
+
+  .student-work-section::before {
+    height: 60%;
+  }
+
+  .student-work-section::after {
+    top: 45%;
+    left: 0;
+    height: 60%;
+  }
+
+  .text-contentSD {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .carousel-containerSD {
+    padding-top: 2rem;
+  }
+
+  .embla__slideSD {
+    flex: 0 0 80%;
+  }
+}
+
+@media (max-width: 640px) {
+  .student-work-section::before {
+    background-color: #091c54;
+  }
+  .student-work-section::after {
+    background-color: #f97316; 
+  }
+  .student-work-section {
+    background: none;
+  }
+  .emblaSD {
+    overflow: hidden;
+    width: 100%;
+  }
+  .embla__slideSD {
+    flex: 0 0 90%;
+  }
+  .text-contentSD {
+   margin-top: -30px;
+  }
+}
+

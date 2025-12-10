@@ -1,0 +1,61 @@
+/* First div: Half-height left border */
+.first-div {
+  position: relative;
+}
+
+.first-div::before {
+  content: "";
+  position: absolute;
+  top: 0; /* Align at the top */
+  left: 0px; /* Position at the left side */
+  height: 50%; /* Half the div's height */
+  width: 1px; /* Border width */
+  background-color: rgb(255, 159, 28); /* Border color */
+}
+
+/* Last div: Half-height right border */
+.last-div {
+  position: relative;
+}
+
+.last-div::before {
+  content: "";
+  position: absolute;
+  top: 0; /* Align to the middle for the lower half */
+  right: 0px; /* Position at the right side */
+  height: 50%; /* Half the div's height */
+  width: 1px; /* Border width */
+  background-color: rgb(255, 159, 28); /* Border color */
+}
+
+/* Card container */
+.card-container {
+  position: relative;
+}
+
+.card-container::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 14px;
+  border-radius: 3px;
+  border-color: transparent;
+}
+
+/* Triangle for even-indexed cards */
+.card-container.border-t-orange-500::after {
+  top: -14px;
+  right: 42%; /* Center align on the right */
+  border-top-color: #ff6b00; /* Triangle color */
+  transform: rotate(-90deg);
+}
+
+/* Triangle for odd-indexed cards */
+.card-container.border-b-orange-500::after {
+  bottom: -14px;
+  right: 45%; /* Center align on the right */
+  border-bottom-color: #ff6b00; /* Triangle color */
+  transform: rotate(90deg);
+}

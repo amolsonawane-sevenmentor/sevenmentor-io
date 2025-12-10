@@ -1,0 +1,42 @@
+/* Custom scrollbar styles */
+.custom-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: rgb(249 115 22) rgb(238, 238, 238); /* For Firefox */
+  border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Thin scrollbar width */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(249 115 22); /* Scrollbar thumb color */
+  border-radius: 4px !important; /* Rounded edges */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: white; /* Scrollbar track color */
+}
+
+
+/* syllabus scrollbar */
+
+.syllabus-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #333333 #000000; /* Updated colors */
+  border-radius: 20px;
+  /* padding-left: 20px; */
+}
+
+.syllabus-scrollbar::-webkit-scrollbar {
+  width: 1px; /* Thin scrollbar width */
+}
+
+.syllabus-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4CAF50; /* Updated scrollbar thumb color */
+  border-radius: 4px !important; /* Rounded edges */
+}
+
+.syllabus-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Updated scrollbar track color */
+}

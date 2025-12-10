@@ -1,0 +1,80 @@
+.flip-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), #0f0f0f);
+  border-radius: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.flip-card:hover {
+  transform: scale(1.5);
+}
+
+.flip-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.flip-card img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.flip-card:hover img {
+  opacity: 0; /* Fades the icon slightly when hovered */
+  display: none;
+}
+
+.flip-card:hover .skill-name{
+  display: none;
+}
+
+.flip-card:hover .flip-card-content{
+  padding: 0;
+
+}
+
+.flip-card .skill-name {
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.flip-card .skill-description {
+  opacity: 0;
+  position: absolute;
+  bottom: 0px;
+  top: 5px;
+  left: 50%;
+  padding: 5px;
+  transform: translateX(-50%);
+  font-size: 9px;
+  text-align: center;
+  width: 100%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.flip-card:hover .skill-description {
+  opacity: 1; /* Shows the description on hover */
+}
+
+
+
+@media (max-width:600px) {
+  .flip-card:hover {
+    transform: scale(1.3);
+  }
+
+  .flip-card .skill-description {
+    top: 3px;
+    padding: 15px;
+  }
+  
+}

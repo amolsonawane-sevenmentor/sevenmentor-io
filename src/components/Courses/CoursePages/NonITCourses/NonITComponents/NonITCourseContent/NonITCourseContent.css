@@ -1,0 +1,75 @@
+/* CourseContent.css */
+
+/* Scoped styles for CourseContent component */
+.course-content h1,
+.course-content h2,
+.course-content h3,
+.course-content h4,
+.course-content h5,
+.course-content h6,
+.course-content p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Headings */
+.course-content h1 {
+    font-size: 2.25rem !important; /* 36px */
+    line-height: 2.5rem !important; /* 40px */
+    font-weight: bold !important;
+}
+
+.course-content h2 {
+    font-size: 1.875rem !important; /* 30px */
+    line-height: 2.25rem !important; /* 36px */
+    font-weight: bold !important;
+}
+
+.course-content h3 {
+    font-size: 1.5rem !important; /* 24px */
+    line-height: 2rem !important; /* 32px */
+    font-weight: bold !important;
+}
+
+.course-content h4 {
+    font-size: 1.25rem !important; /* 20px */
+    line-height: 1.75rem !important; /* 28px */
+    font-weight: bold !important;
+}
+
+.course-content h5 {
+    font-size: 1.125rem !important; /* 18px */
+    line-height: 1.5rem !important; /* 24px */
+    font-weight: bold !important;
+}
+
+.course-content h6 {
+    font-size: 1rem !important; /* 16px */
+    line-height: 1.5rem !important; /* 24px */
+    font-weight: bold !important;
+}
+
+/* Paragraphs */
+.course-content p {
+    font-size: 1rem !important; /* 16px */
+    line-height: 1.5rem !important; /* 24px */
+    margin-bottom: 1rem !important; /* 16px */
+}
+
+/* Text tags */
+.course-content span,
+.course-content a {
+    font-size: 1rem !important; /* 16px */
+    line-height: 1.5rem !important; /* 24px */
+}
+
+/* Additional styling for lists */
+.course-content ul,
+.course-content ol {
+    margin-left: 1.5rem !important; /* 24px */
+    margin-bottom: 1rem !important; /* 16px */
+}
+
+.course-content li {
+    margin-bottom: 0.5rem !important; /* 8px */
+}

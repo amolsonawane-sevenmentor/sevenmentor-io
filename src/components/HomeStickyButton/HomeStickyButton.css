@@ -1,0 +1,26 @@
+.custom-ribbon-btn {
+    display: inline-flex;
+    z-index: 99999;
+    align-items: center;
+    text-align: start;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #f97316;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(88% 0%, 70% 50%, 87% 100%, 0 100%, 0% 50%, 0 0);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .custom-ribbon-btn:hover {
+    background: #ea580c; 
+    transform: translateY(-4px);
+  }
+  
+
+
+   
+
+

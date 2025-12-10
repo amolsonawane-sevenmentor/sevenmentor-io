@@ -1,0 +1,30 @@
+// src/brandLogos.js
+
+export const brandLogosRows = [
+    { src: "/assets/images/brand/comtron.webp", alt: "Bajaj" },
+    { src: "/assets/images/brand/omfyss.webp", alt: "Omfys" },
+    { src: "/assets/images/brand/knorex.webp", alt: "Knorex" },
+    { src: "/assets/images/brand/MavenTech.webp", alt: "Maven-Tech" },
+    { src: "/assets/images/brand/nimap.webp", alt: "Nimap-Infotech" },
+    { src: "/assets/images/brand/dimakh.webp", alt: "Dimakh-Consultants" },
+    { src: "/assets/images/brand/realizer.webp", alt: "Realizer-Tech" },
+    { src: "/assets/images/brand/Acer.webp", alt: "Acer" },
+    { src: "/assets/images/brand/Adobe.webp", alt: "Adobe" },
+    { src: "/assets/images/brand/Amazon.webp", alt: "Amazon" },
+    { src: "/assets/images/brand/Arti.webp", alt: "Arti" },
+    { src: "/assets/images/brand/Dell.webp", alt: "Dell" },
+    { src: "/assets/images/brand/EarthFast.webp", alt: "EarthFast" },
+    { src: "/assets/images/brand/Ebay.webp", alt: "Ebay" },
+    { src: "/assets/images/brand/FoxTech.webp", alt: "FoxTech" },
+    { src: "/assets/images/brand/HclTech.webp", alt: "HCL Tech" },
+    { src: "/assets/images/brand/Infosys.webp", alt: "Infosys" },
+    { src: "/assets/images/brand/itc.webp", alt: "ITC" },
+    { src: "/assets/images/brand/LG.webp", alt: "LG" },
+    { src: "/assets/images/brand/Mittal.webp", alt: "Mittal" },
+    { src: "/assets/images/brand/Novolex.webp", alt: "Novolex" },
+    { src: "/assets/images/brand/Pursho.webp", alt: "Pursho" },
+    { src: "/assets/images/brand/Slack.webp", alt: "Slack" },
+    { src: "/assets/images/brand/TechMahindra.webp", alt: "Tech Mahindra" },
+    { src: "/assets/images/brand/Wipro.webp", alt: "Wipro" },
+  ];
+  

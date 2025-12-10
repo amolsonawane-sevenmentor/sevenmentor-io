@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+body{
+  background-color: #000000;
+}
+
+/* To hide the google recaptcha badge */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+
+/* Custom scrollbar styles */
+.custom-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: rgb(249 115 22) rgb(238, 238, 238); /* For Firefox */
+  border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Thin scrollbar width */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(249 115 22); /* Scrollbar thumb color */
+  border-radius: 4px !important; /* Rounded edges */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: white; /* Scrollbar track color */
+}
+
+/* syllabus scrollbar */
+.syllabus-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #333333 #000000; /* Updated colors */
+  border-radius: 20px;
+}
+
+.syllabus-scrollbar::-webkit-scrollbar {
+  width: 1px; /* Thin scrollbar width */
+}
+
+.syllabus-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* Updated scrollbar thumb color */
+  border-radius: 4px !important; /* Rounded edges */
+}
+
+.syllabus-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Updated scrollbar track color */
+}
+
+/* Animation for logo */
+.animate-charcter {
+  background-image: linear-gradient(-225deg, #231557 0%, #44107a 29%, #ff1361 67%, #fff800 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Shimmer effect */
+.shimmer-effect {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari */
+}
+.scrollbar-hide {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;     /* Firefox */
+}
