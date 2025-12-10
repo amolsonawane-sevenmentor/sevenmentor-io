@@ -127,7 +127,7 @@ export default function RootLayout({ children }) {
         {/* End Google Tag Manager (noscript) */}
 
         {/* <ResponsiveNavbar /> */}
-        <main className="pt-20">{children}</main>
+        <main className="">{children}</main>
         {/* <Footer /> */}
 
         {/* Google Ads gtag */}
