@@ -77,15 +77,15 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between text-sm">
                     {/* Left: Social Icons */}
                     <div className="flex gap-4 items-center">
-                        <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors"><Facebook size={18} /></a>
-                        <a href="#" className="text-gray-600 hover:text-red-600 transition-colors"><Youtube size={18} /></a>
-                        <a href="#" className="text-gray-600 hover:text-blue-700 transition-colors"><Linkedin size={18} /></a>
-                        <a href="#" className="text-gray-600 hover:text-pink-600 transition-colors"><Instagram size={18} /></a>
+                        <a href="https://www.facebook.com/sevenmentor" className="text-gray-600 hover:text-blue-600 transition-colors"><Facebook size={18} /></a>
+                        <a href="https://www.youtube.com/channel/UChNDri-8mgQhrlp2KHLpkYA" className="text-gray-600 hover:text-red-600 transition-colors"><Youtube size={18} /></a>
+                        <a href="https://www.linkedin.com/company/sevenmentor" className="text-gray-600 hover:text-blue-700 transition-colors"><Linkedin size={18} /></a>
+                        <a href="https://www.instagram.com/sevenmentor" className="text-gray-600 hover:text-pink-600 transition-colors"><Instagram size={18} /></a>
                     </div>
 
                     {/* Right: Quick Links */}
                     <div className="flex gap-4 text-xs font-medium text-orange-500">
-                        <a href="#" className="hover:text-orange-600 flex items-center gap-1">
+                        {/* <a href="#" className="hover:text-orange-600 flex items-center gap-1">
                             <Users size={14} className="text-blue-500" /> Job Fair
                         </a>
                         <a href="#" className="hover:text-orange-600 flex items-center gap-1">
@@ -105,7 +105,7 @@ export default function Navbar() {
                         </a>
                         <a href="#" className="hover:text-orange-600 flex items-center gap-1">
                             <Users size={14} className="text-blue-500" /> Careers
-                        </a>
+                        </a> */}
                     </div>
                 </div>
             </div>
