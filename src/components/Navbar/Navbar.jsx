@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     ChevronDown,
     Menu,
@@ -113,7 +114,16 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
-                    <Link href="/" className="flex-shrink-0 flex items-center gap-2">
+                    <Link href="/" className="flex-shrink-0 flex items-center gap-0">
+                        {/* Logo Image */}
+                        <Image
+                            src="/assets/sevenMLogo.webp"
+                            alt="SevenMentor Logo"
+                            width={50}
+                            height={50}
+                            className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                        />
+                        {/* Logo Text */}
                         <div className="relative">
                             <span className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600">
                                 SevenMentor

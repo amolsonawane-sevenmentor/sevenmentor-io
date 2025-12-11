@@ -1,53 +1,83 @@
-"use client";
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, BookOpen } from 'lucide-react';
+import { List, ChevronDown, ChevronUp, Clock, CheckCircle } from 'lucide-react';
+import { syllabusData } from '../../../data/syllabusData';
 
-export default function SyllabusSection({ syllabus }) {
-    const [openIndex, setOpenIndex] = useState(0);
-
-    if (!syllabus) return null;
+export default function SyllabusSection() {
+    const [expandedModule, setExpandedModule] = useState(1);
 
     return (
-        <section className="py-20 px-4 bg-gray-50">
-            <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">Course Syllabus</h2>
-                    <div className="h-1 w-20 bg-orange-500 mx-auto"></div>
+        <section className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div className="bg-gradient-to-r from-blue-50 to-white p-6 border-b border-gray-100">
+                <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-400 rounded-xl flex items-center justify-center">
+                        <List className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                        <h2 className="text-2xl font-bold text-gray-900">{syllabusData.title}</h2>
+                        <p className="text-sm text-gray-600">{syllabusData.subtitle}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="p-6 md:p-8">
+                <div className="flex flex-wrap gap-4 mb-8">
+                    <div className="bg-orange-50 border border-orange-200 px-6 py-3 rounded-xl">
+                        <div className="text-sm text-orange-600 font-medium">Total Duration</div>
+                        <div className="text-2xl font-bold text-orange-700">{syllabusData.totalDuration}</div>
+                    </div>
+                    <div className="bg-green-50 border border-green-200 px-6 py-3 rounded-xl">
+                        <div className="text-sm text-green-600 font-medium">Modules</div>
+                        <div className="text-2xl font-bold text-green-700">{syllabusData.modules.length}</div>
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 px-6 py-3 rounded-xl">
+                        <div className="text-sm text-blue-600 font-medium">Certification</div>
+                        <div className="text-sm font-bold text-blue-700 mt-1">Upon Completion</div>
+                    </div>
                 </div>
 
                 <div className="space-y-4">
-                    {syllabus.map((module, idx) => (
-                        <div key={idx} className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                    {syllabusData.modules.map((module) => (
+                        <div
+                            key={module.id}
+                            className="border border-gray-200 rounded-xl overflow-hidden hover:border-orange-300 transition-colors duration-300"
+                        >
                             <button
-                                onClick={() => setOpenIndex(op => op === idx ? -1 : idx)}
-                                className="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 transition text-left"
+                                onClick={() => setExpandedModule(expandedModule === module.id ? null : module.id)}
+                                className="w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-gray-100 transition-colors duration-300"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="bg-orange-100 p-2 rounded text-orange-600">
-                                        <BookOpen size={20} />
+                                    <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-400 rounded-lg flex items-center justify-center text-white font-bold">
+                                        {module.id}
                                     </div>
-                                    <span className="text-lg font-semibold text-gray-800">{module.title}</span>
+                                    <div className="text-left">
+                                        <h3 className="font-bold text-gray-900">{module.title}</h3>
+                                        <div className="flex items-center gap-2 mt-1">
+                                            <Clock className="w-4 h-4 text-gray-500" />
+                                            <span className="text-sm text-gray-600">{module.duration}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                {openIndex === idx ? <ChevronUp className="text-gray-400" /> : <ChevronDown className="text-gray-400" />}
+                                {expandedModule === module.id ? (
+                                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                                ) : (
+                                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                                )}
                             </button>
 
-                            {openIndex === idx && (
-                                <div className="p-6 pt-0 border-t border-gray-100 bg-gray-50/50">
-                                    <ul className="space-y-2 mt-4 ml-12 list-disc text-gray-600">
-                                        {module.topics.map((topic, tIdx) => (
-                                            <li key={tIdx}>{topic}</li>
+                            {expandedModule === module.id && (
+                                <div className="p-5 bg-white border-t border-gray-200">
+                                    <div className="space-y-2">
+                                        {module.topics.map((topic, idx) => (
+                                            <div key={idx} className="flex items-start gap-3 py-2">
+                                                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                                                <span className="text-gray-700">{topic}</span>
+                                            </div>
                                         ))}
-                                    </ul>
+                                    </div>
                                 </div>
                             )}
                         </div>
                     ))}
-                </div>
-
-                <div className="mt-12 text-center">
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded transition shadow">
-                        Download Full Syllabus
-                    </button>
                 </div>
             </div>
         </section>
