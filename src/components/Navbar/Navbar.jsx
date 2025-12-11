@@ -22,9 +22,17 @@ import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [openDropdowns, setOpenDropdowns] = useState({});
     const pathname = usePathname();
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    const toggleDropdown = (index) => {
+        setOpenDropdowns(prev => ({
+            ...prev,
+            [index]: !prev[index]
+        }));
+    };
 
     const navItems = [
         {
@@ -63,19 +71,19 @@ export default function Navbar() {
 
     return (
         <nav className="bg-white shadow-sm sticky top-0 z-50 font-sans">
-            {/* Top Bar */}
-            <div className="border-b border-gray-100 bg-white">
-                <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col md:flex-row items-center justify-between text-xs sm:text-sm">
+            {/* Top Bar - Hidden on Mobile */}
+            <div className="border-b border-gray-100 bg-white hidden md:block">
+                <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between text-sm">
                     {/* Left: Social Icons */}
-                    <div className="flex gap-4 items-center mb-2 md:mb-0">
-                        <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors"><Facebook size={20} /></a>
-                        <a href="#" className="text-gray-600 hover:text-red-600 transition-colors"><Youtube size={20} /></a>
-                        <a href="#" className="text-gray-600 hover:text-blue-700 transition-colors"><Linkedin size={20} /></a>
-                        <a href="#" className="text-gray-600 hover:text-pink-600 transition-colors"><Instagram size={20} /></a>
+                    <div className="flex gap-4 items-center">
+                        <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors"><Facebook size={18} /></a>
+                        <a href="#" className="text-gray-600 hover:text-red-600 transition-colors"><Youtube size={18} /></a>
+                        <a href="#" className="text-gray-600 hover:text-blue-700 transition-colors"><Linkedin size={18} /></a>
+                        <a href="#" className="text-gray-600 hover:text-pink-600 transition-colors"><Instagram size={18} /></a>
                     </div>
 
                     {/* Right: Quick Links */}
-                    <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center md:justify-end text-[11px] sm:text-xs font-medium text-orange-500">
+                    <div className="flex gap-4 text-xs font-medium text-orange-500">
                         <a href="#" className="hover:text-orange-600 flex items-center gap-1">
                             <Users size={14} className="text-blue-500" /> Job Fair
                         </a>
@@ -89,10 +97,10 @@ export default function Navbar() {
                             <Building2 size={14} className="text-blue-500" /> Corporate Training
                         </a>
                         <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <LinkIcon size={14} className="text-blue-500" /> Franchise Opportunities
+                            <LinkIcon size={14} className="text-blue-500" /> Franchise
                         </a>
                         <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <CheckCircle size={14} className="text-blue-500" /> Placement & CRM
+                            <CheckCircle size={14} className="text-blue-500" /> Placement
                         </a>
                         <a href="#" className="hover:text-orange-600 flex items-center gap-1">
                             <Users size={14} className="text-blue-500" /> Careers
@@ -103,12 +111,11 @@ export default function Navbar() {
 
             {/* Main Navigation */}
             <div className="max-w-7xl mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
+                <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0 flex items-center gap-2">
-                        {/* Replace with actual logo image if available, using text/icon proxy for now */}
                         <div className="relative">
-                            <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600">
+                            <span className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600">
                                 SevenMentor
                             </span>
                             <span className="absolute -bottom-2 right-0 text-[10px] text-gray-500 font-bold tracking-widest">PVT. LTD.</span>
@@ -165,11 +172,19 @@ export default function Navbar() {
                     <div className="flex flex-col p-4">
                         {navItems.map((item, idx) => (
                             <div key={idx} className="border-b border-gray-100 last:border-0">
-                                <div className="py-3 px-2 font-semibold text-gray-800 flex justify-between items-center bg-gray-50 rounded mt-2">
+                                <button
+                                    onClick={() => item.submenu && toggleDropdown(idx)}
+                                    className="w-full py-3 px-2 font-semibold text-gray-800 flex justify-between items-center bg-gray-50 rounded mt-2 hover:bg-gray-100 transition-colors"
+                                >
                                     {item.name}
-                                    {item.submenu && <ChevronDown size={16} />}
-                                </div>
-                                {item.submenu && (
+                                    {item.submenu && (
+                                        <ChevronDown
+                                            size={16}
+                                            className={`transition-transform duration-200 ${openDropdowns[idx] ? 'rotate-180' : ''}`}
+                                        />
+                                    )}
+                                </button>
+                                {item.submenu && openDropdowns[idx] && (
                                     <div className="pl-4 pb-2 bg-white">
                                         {item.submenu.map((subItem, subIdx) => (
                                             <Link
