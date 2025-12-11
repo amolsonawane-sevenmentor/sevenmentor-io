@@ -45,8 +45,8 @@ export default function Navbar() {
 
     const navItems = [
         { name: "Home", link: "/" },
-        { name: "About", link: "/about" },
-        { name: "Contact", link: "/contact" },
+        { name: "About", link: "/about-us" },
+        { name: "Contact", link: "/contact-us" },
         {
             name: "Courses",
             link: "#",
@@ -66,7 +66,7 @@ export default function Navbar() {
     return (
         <nav className="bg-white shadow-sm sticky top-0 z-50 font-sans">
             {/* Top Bar - Hidden on Mobile */}
-           
+
 
 
 
