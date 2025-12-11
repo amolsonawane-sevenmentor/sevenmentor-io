@@ -39,7 +39,7 @@ export default function CHFICoursePage() {
         try {
             const payload = {
                 formData,
-                to: "vivekmandiya178@gmail.com",
+                to: "mumbaileads@sevenmentor.com",
                 Course: formData.course,
                 contactNo,
                 bannerTitle,
@@ -1061,7 +1061,7 @@ export default function CHFICoursePage() {
                     </div>
                 </section>
                 <EnrollForm
-                mailTo="vivekmandiya178@gmail.com"
+                mailTo="mumbaileads@sevenmentor.com"
                 course='Computer Hacking Forensic Investigator (CHFI)'
                 contactNumber="022-48904395"
                 />

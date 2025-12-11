@@ -637,7 +637,7 @@ export default function WAPTCoursePage() {
     return (
         <div className="min-h-screen bg-gray-50">
             <header className="sr-only">
-                <h1>Web Application Penetration Testing (WAPT) Training Course in Mumbai | SevenMentor</h1>
+                <h1>Data Analytics Course Training Course in Mumbai | SevenMentor</h1>
             </header>
 
             {/* Floating Contact Buttons */}
@@ -667,7 +667,7 @@ export default function WAPTCoursePage() {
                         <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-orange-500 text-white p-6 rounded-t-2xl flex items-center justify-between">
                             <div>
                                 <h3 className="text-2xl font-bold">Enroll Now</h3>
-                                <p className="text-orange-100 text-sm">Start your web security testing career today</p>
+                                <p className="text-orange-100 text-sm">Start your Data Analytics today</p>
                             </div>
                             <button
                                 onClick={() => setShowEnrollForm(false)}
@@ -922,8 +922,8 @@ export default function WAPTCoursePage() {
                                 <Zap className="w-6 h-6 text-white" />
                             </div>
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900">Why Learn Web Application Security?</h2>
-                                <p className="text-sm text-gray-600">Benefits of pursuing web security testing career</p>
+                                <h2 className="text-3xl font-bold text-gray-900">Why Learn Data Analytics?</h2>
+                                <p className="text-sm text-gray-600">Benefits of pursuing Data Analytics Course career</p>
                             </div>
                         </div>
                     </div>
@@ -951,7 +951,7 @@ export default function WAPTCoursePage() {
                                 <FileCheck className="w-6 h-6 text-white" />
                             </div>
                             <div>
-                                <h2 className="text-3xl font-bold text-gray-900">WAPT Course Syllabus</h2>
+                                <h2 className="text-3xl font-bold text-gray-900">Data Analytics  Course Syllabus</h2>
                                 <p className="text-sm text-gray-600">Complete 20 modules covering all web security topics</p>
                             </div>
                         </div>
@@ -1017,7 +1017,7 @@ export default function WAPTCoursePage() {
                     </div>
                 </section>
                 <EnrollForm
-                mailTo="vivekmandiya178@gmail.com"
+                mailTo="mumbaileads@sevenmentor.com"
                 course='Web Application Penetration Testing (WAPT)'
                 contactNumber="022-48904395"
                 />
@@ -1183,7 +1183,7 @@ export default function WAPTCoursePage() {
                             </div>
                             <div>
                                 <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
-                                <p className="text-sm text-gray-600">Everything you need to know about WAPT training</p>
+                                <p className="text-sm text-gray-600">Everything you need to know about Data Analytics Course</p>
                             </div>
                         </div>
                     </div>
@@ -1220,8 +1220,8 @@ export default function WAPTCoursePage() {
                     <div className="p-12">
                         <div className="grid md:grid-cols-2 gap-12">
                             <div>
-                                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Become a Web Security Expert?</h2>
-                                <p className="text-xl text-gray-300 mb-8">Join 1500+ students trained by SevenMentor and start your web application security career</p>
+                                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Become a Data Analytics?</h2>
+                                <p className="text-xl text-gray-300 mb-8">Join 1500+ students trained by SevenMentor and start your Data Analytics career</p>
 
                                 <div className="flex flex-col gap-4 mb-8">
                                     <button
@@ -1295,8 +1295,8 @@ export default function WAPTCoursePage() {
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-8 mt-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <p className="text-gray-400">© 2025 SevenMentor - Web Application Penetration Testing Training Institute Mumbai. All rights reserved.</p>
-                    <p className="text-sm text-gray-500 mt-2">WAPT Training | Web Security Course | OWASP Top 10 | Burp Suite Training | Mumbai | SevenMentor</p>
+                    <p className="text-gray-400">© 2025 SevenMentor - Data Analytics Institute Mumbai. All rights reserved.</p>
+                    <p className="text-sm text-gray-500 mt-2">Data Analytics | Data Analytics Course | OWASP Top 10 | Burp Suite Training | Mumbai | SevenMentor</p>
                 </div>
             </footer>
         </div>

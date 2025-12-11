@@ -985,7 +985,7 @@ export default function EthicalHackingCoursePage() {
                     </div>
                 </section>
                 <EnrollForm
-                mailTo="vivekmandiya178@gmail.com"
+                mailTo="mumbaileads@sevenmentor.com"
                 course='Security Operations Center (SOC) Training'
                 contactNumber="022-48904395"
                 />

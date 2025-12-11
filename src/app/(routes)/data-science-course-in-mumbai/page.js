@@ -615,7 +615,7 @@ export default function DataScienceCoursePage() {
 
                 {/* Enrollment Form */}
                 <EnrollForm
-                    mailTo="vivekmandiya178@gmail.com"
+                    mailTo="mumbaileads@sevenmentor.com"
                     course='Data Science'
                     contactNumber="022-48904395"
                 />
@@ -765,11 +765,7 @@ export default function DataScienceCoursePage() {
                                                     <span className="text-gray-700">{batch.location}</span>
                                                 </div>
                                             </td>
-                                            <td className="p-4">
-                                                <button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg">
-                                                    Enroll Now
-                                                </button>
-                                            </td>
+                                           
                                         </tr>
                                     ))}
                                 </tbody>

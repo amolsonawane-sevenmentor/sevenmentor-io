@@ -1100,7 +1100,7 @@ export default function CyberSecurityAnalystCoursePage() {
           </div>
         </section>
         <EnrollForm
-                mailTo="vivekmandiya178@gmail.com"
+                mailTo="mumbaileads@sevenmentor.com"
                 course='Cyber Security Analyst Program'
                 contactNumber="022-48904395"
                 />
