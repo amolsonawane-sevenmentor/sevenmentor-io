@@ -7,6 +7,7 @@ import {
     Calendar, MapPin, Phone, Mail, Globe, Laptop,
     Code, Database, Network, Server, Eye, Bug, User, MessageSquare, MessageCircle
 } from 'lucide-react';
+import EnrollForm from "../../../components/EnrollForm/EnrollForm.jsx"
 
 export default function CyberSecurityCoursePage() {
     const [expandedModule, setExpandedModule] = useState(null);
@@ -630,133 +631,10 @@ export default function CyberSecurityCoursePage() {
                 </section>
 
                 {/* Enrollment Form */}
-                <section id="enroll" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
-                                <MessageSquare className="w-6 h-6 text-white" />
-                            </div>
-                            <div>
-                                <h2 className="text-3xl font-bold text-gray-900">Enroll Now</h2>
-                                <p className="text-sm text-gray-600">Fill the form and our team will contact you</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="p-8">
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        Full Name *
-                                    </label>
-                                    <div className="relative">
-                                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-                                            placeholder="Enter your full name"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        Email Address *
-                                    </label>
-                                    <div className="relative">
-                                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-                                            placeholder="Enter your email"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        Phone Number *
-                                    </label>
-                                    <div className="relative">
-                                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                                        <input
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
-                                            placeholder="Enter your phone number"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="course" className="block text-sm font-semibold text-gray-700 mb-2">
-                                        Course *
-                                    </label>
-                                    <div className="relative">
-                                        <Award className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                                        <select
-                                            id="course"
-                                            name="course"
-                                            value={formData.course}
-                                            onChange={handleInputChange}
-                                            required
-                                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all appearance-none bg-white"
-                                        >
-                                            <option value="Cyber Security">Cyber Security</option>
-                                            <option value="Ethical Hacking">Ethical Hacking</option>
-                                            <option value="Network Security">Network Security</option>
-                                            <option value="CEH Certification">CEH Certification</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                                    Message (Optional)
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleInputChange}
-                                    rows={4}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all resize-none"
-                                    placeholder="Tell us about your background and goals..."
-                                />
-                            </div>
-
-                            <div className="flex items-center gap-4">
-                                <button
-                                    type="submit"
-                                    className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg transform hover:scale-105 transition-all duration-300"
-                                >
-                                    Submit Enrollment
-                                </button>
-                                <p className="text-sm text-gray-600">
-                                    Our team will contact you within 24 hours
-                                </p>
-                            </div>
-                        </form>
-                    </div>
-                </section>
+                <EnrollForm
+                mailTo="vivekmandiya178@gmail.com"
+                />
+                
 
                 {/* Key Features */}
                 <section id="features" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
@@ -967,7 +845,7 @@ export default function CyberSecurityCoursePage() {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                             <a href="tel:+919876543210" className="flex items-center justify-center gap-2 bg-white text-orange-900 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
                                 <Phone className="w-5 h-5" />
-                                +91 98765 43210
+                                022-48904395
                             </a>
                             <a href="mailto:info@cybersecurity-mumbai.com" className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
                                 <Mail className="w-5 h-5" />
