@@ -9,7 +9,7 @@ import {
     Building, GraduationCap, Zap, Terminal, X, MessageCircle,
     MessageSquare
 } from 'lucide-react';
-
+import EnrollForm from "../../../components/EnrollForm/EnrollForm"
 export default function EthicalHackingCoursePage() {
     const [expandedModule, setExpandedModule] = useState(1);
     const [expandedFaq, setExpandedFaq] = useState(null);
@@ -984,7 +984,11 @@ export default function EthicalHackingCoursePage() {
                         </div>
                     </div>
                 </section>
-
+                <EnrollForm
+                mailTo="vivekmandiya178@gmail.com"
+                course='Security Operations Center (SOC) Training'
+                contactNumber="022-48904395"
+                />
                 {/* Key Features */}
                 <section id="features" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                     <div className="bg-gradient-to-r from-purple-50 to-white p-6 border-b border-gray-100">
@@ -1127,14 +1131,7 @@ export default function EthicalHackingCoursePage() {
                                                     <span className="text-gray-700">{batch.location}</span>
                                                 </div>
                                             </td>
-                                            <td className="p-4">
-                                                <button
-                                                    onClick={() => setShowEnrollForm(true)}
-                                                    className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-                                                >
-                                                    Enroll Now
-                                                </button>
-                                            </td>
+                                           
                                         </tr>
                                     ))}
                                 </tbody>

@@ -9,7 +9,7 @@ import {
     Building, GraduationCap, Zap, Terminal, X, MessageCircle,
     FileText, Activity, Layers, Key, RefreshCw, Settings
 } from 'lucide-react';
-
+import EnrollForm from "../../../components/EnrollForm/EnrollForm.jsx"
 export default function WAPTCoursePage() {
     const [expandedModule, setExpandedModule] = useState(1);
     const [expandedFaq, setExpandedFaq] = useState(null);
@@ -1211,14 +1211,7 @@ export default function WAPTCoursePage() {
                                                     <span className="text-gray-700">{batch.location}</span>
                                                 </div>
                                             </td>
-                                            <td className="p-4">
-                                                <button
-                                                    onClick={() => setShowEnrollForm(true)}
-                                                    className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-                                                >
-                                                    Enroll Now
-                                                </button>
-                                            </td>
+                    
                                         </tr>
                                     ))}
                                 </tbody>

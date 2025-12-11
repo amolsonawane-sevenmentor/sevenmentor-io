@@ -10,6 +10,7 @@ import {
     HardDrive, FileSearch, Fingerprint, Archive, Scale
 } from 'lucide-react';
 import EnrollForm from '../../../components/EnrollForm/EnrollForm';
+import axios from 'axios';
 
 export default function CHFICoursePage() {
     const [expandedModule, setExpandedModule] = useState(1);
@@ -32,22 +33,54 @@ export default function CHFICoursePage() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Thank you for your interest! Our team will contact you shortly.');
-        setShowEnrollForm(false);
-        setFormData({
-            fullName: '',
-            email: '',
-            phone: '',
-            course: 'Computer Hacking Forensic Investigator (CHFI)',
-            batchPreference: '',
-            experience: '',
-            message: ''
-        });
+    
+        try {
+            const payload = {
+                formData,
+                to: "vivekmandiya178@gmail.com",
+                Course: formData.course,
+                contactNo,
+                bannerTitle,
+                mailSubject: "New Course Enrollment",
+                userEmailSubject: "Thanks for Enrolling",
+            };
+    
+            await axios.post("http://localhost:8080/api/main-form", payload);
+    
+            setPopup({
+                show: true,
+                type: "success",
+                message: "Form submitted successfully!",
+            });
+    
+            // Reset form
+            setFormData({
+                fullName: "",
+                email: "",
+                phone: "",
+                course: "Computer Hacking Forensic Investigator (CHFI)",
+                batchPreference: "",
+                experience: "",
+                message: "",
+            });
+    
+        } catch (err) {
+            console.error(err);
+    
+            setPopup({
+                show: true,
+                type: "error",
+                message: "Something went wrong!",
+            });
+        }
+    
+        setTimeout(() => {
+            setPopup({ show: false, type: "", message: "" });
+        }, 3000);
     };
-
+    
     const heroData = {
         title: 'Computer Hacking Forensic Investigator (CHFI)',
         subtitle: 'Master Digital Forensics, Incident Investigation & Evidence Analysis',
@@ -1175,14 +1208,7 @@ export default function CHFICoursePage() {
                                                     <span className="text-gray-700">{batch.location}</span>
                                                 </div>
                                             </td>
-                                            <td className="p-4">
-                                                <button
-                                                    onClick={() => setShowEnrollForm(true)}
-                                                    className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-                                                >
-                                                    Enroll Now
-                                                </button>
-                                            </td>
+                                          
                                         </tr>
                                     ))}
                                 </tbody>
