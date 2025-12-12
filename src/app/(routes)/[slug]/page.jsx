@@ -164,6 +164,14 @@ export default function CoursePage({ params }) {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
 
+                
+                {/* Enrollment Form */}
+                <EnrollForm
+                    mailTo={contactEmail}
+                    course={courseName}
+                    contactNumber={contactNumber}
+                />
+
 
                 {/* About Course Section */}
                 <section id="about" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
@@ -282,24 +290,18 @@ export default function CoursePage({ params }) {
                             ))}
                         </div>
 
-                        <div className="flex justify-center mt-8">
+                        {/* <div className="flex justify-center mt-8">
     <button className="bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-800 px-10 py-4 rounded-xl font-bold text-lg shadow-lg transition-all duration-300 border border-gray-400"
     onClick={() => setShowForm(true)}
     >
-        Download Syllabus
+                       
     </button>
-</div>
+</div>  */}
 
                     </div>
                 </section>
 
 
-                {/* Enrollment Form */}
-                <EnrollForm
-                    mailTo={contactEmail}
-                    course={courseName}
-                    contactNumber={contactNumber}
-                />
 
 
                 {/* Key Features */}

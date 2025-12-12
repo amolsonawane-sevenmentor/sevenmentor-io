@@ -422,7 +422,7 @@ export const courses = [
         ],
         courseName: 'Cyber Security',
         contactEmail: 'mumbaileads@sevenmentor.com',
-        contactNumber: '022-48904395',
+        contactNumber: '02248904395',
         whatsappNumber: '+918421176876',
         whatsappMessage: 'Hi+I+am+looking+for+Cyber+Security+Course+in+Mumbai+course'
     },
@@ -1014,8 +1014,8 @@ export const courses = [
     ],
     courseName: 'Certified Ethical Hacking (CEH v12)',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Certified+Ethical+Hacking+CEH+v12+Course+in+Mumbai'
 },
 {
@@ -1572,8 +1572,8 @@ export const courses = [
     ],
     courseName: 'SOC Analyst',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+SOC+Analyst+Training+Course+in+Mumbai'
 },
 {
@@ -2130,8 +2130,8 @@ export const courses = [
     ],
     courseName: 'Computer Hacking Forensic Investigator (CHFI)',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+CHFI+Training+Course+in+Mumbai'
 },
 {
@@ -2721,9 +2721,9 @@ export const courses = [
         }
     ],
     courseName: 'Web Application Penetration Testing (WAPT)',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+WAPT+Training+Course+in+Mumbai'
 },
 {
@@ -3313,9 +3313,9 @@ export const courses = [
         }
     ],
     courseName: 'Cyber Security Analyst Program',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Cyber+Security+Analyst+Program+in+Mumbai'
 },
 
@@ -3992,8 +3992,8 @@ export const courses = [
     ],
     courseName: 'Data Science, Machine Learning & AI Complete Program',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Data+Science+ML+AI+Course+in+Mumbai'
 },
 
@@ -4653,8 +4653,8 @@ export const courses = [
     ],
     courseName: 'Data Analytics with Python, SQL, Excel & Power BI',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Data+Analytics+Course+in+Mumbai'
 },
 
@@ -5300,8 +5300,8 @@ export const courses = [
     ],
     courseName: 'Python Programming',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Python+Programming+Course+in+Mumbai'
 },
 
@@ -6006,9 +6006,9 @@ export const courses = [
         }
     ],
     courseName: 'Data Science',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Data+Science+Course+in+Mumbai'
 },
 
@@ -6668,8 +6668,8 @@ export const courses = [
     ],
     courseName: 'Data Analytics',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Data+Analytics+Course+in+Mumbai'
 },
 
@@ -7287,8 +7287,8 @@ export const courses = [
     ],
     courseName: 'Advanced Excel',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Advanced+Excel+Course+in+Mumbai'
 },
 
@@ -7896,9 +7896,9 @@ export const courses = [
         }
     ],
     courseName: 'Python + SQL + Advanced Excel + Power BI',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+     contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Python+SQL+Excel+PowerBI+Course+in+Mumbai'
 },
 
@@ -8606,8 +8606,8 @@ export const courses = [
     ],
     courseName: 'Full Stack Java Developer',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Full+Stack+Java+Course+in+Mumbai'
 },
 
@@ -9315,8 +9315,8 @@ export const courses = [
     ],
     courseName: 'Full Stack Python Developer',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Full+Stack+Python+Course+in+Mumbai'
 },
 
@@ -9980,9 +9980,9 @@ export const courses = [
         }
     ],
     courseName: 'Software Testing (Manual + Automation)',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Software+Testing+Course+in+Mumbai'
 },
 
@@ -10680,9 +10680,9 @@ export const courses = [
         }
     ],
     courseName: 'Web Full Stack Developer',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Web+Full+Stack+Course+in+Mumbai'
 },
 
@@ -11334,9 +11334,9 @@ export const courses = [
         }
     ],
     courseName: 'Web Development',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Web+Development+Course+in+Mumbai'
 },
 
@@ -12028,9 +12028,9 @@ export const courses = [
         }
     ],
     courseName: 'CCNA + Linux + AWS Networking & Cloud',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+CCNA+Linux+AWS+Course+in+Mumbai'
 },
 
@@ -12747,9 +12747,9 @@ export const courses = [
         }
     ],
     courseName: 'CCNA (Cisco Certified Network Associate)',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+CCNA+Course+in+Mumbai'
 },
 
@@ -13528,9 +13528,9 @@ export const courses = [
         }
     ],
     courseName: 'CCNA + Linux + CEH Networking & Security',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+CCNA+Linux+CEH+Course+in+Mumbai'
 },
 
@@ -14325,8 +14325,8 @@ export const courses = [
     ],
     courseName: 'CCNA + Linux + AWS + DevOps Infrastructure',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+CCNA+Linux+AWS+DevOps+Course+in+Mumbai'
 },
 
@@ -15049,8 +15049,8 @@ export const courses = [
     ],
     courseName: 'DevOps Engineer',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+DevOps+Course+in+Mumbai'
 },
 
@@ -15802,9 +15802,9 @@ export const courses = [
         }
     ],
     courseName: 'Cloud Computing (AWS + Azure + GCP)',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+ contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Cloud+Computing+Course+in+Mumbai'
 },
 
@@ -16433,8 +16433,8 @@ export const courses = [
     ],
     courseName: 'SAP MM S/4 HANA',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+SAP+MM+S4+HANA+Course+in+Mumbai'
 },
 
@@ -17166,8 +17166,8 @@ export const courses = [
     ],
     courseName: 'SAP FICO S/4 HANA',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+SAP+FICO+S4+HANA+Course+in+Mumbai'
 },
 
@@ -18053,9 +18053,9 @@ export const courses = [
         }
     ],
     courseName: 'SAP FICO',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+SAP+FICO+Course+in+Mumbai'
 },
 
@@ -18880,8 +18880,8 @@ export const courses = [
     ],
     courseName: 'SAP MM',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+SAP+MM+Course+in+Mumbai'
 },
 
@@ -19605,8 +19605,8 @@ export const courses = [
     ],
     courseName: 'Soft Skills Training',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Soft+Skills+Training+Course+in+Mumbai'
 },
 
@@ -20489,9 +20489,9 @@ export const courses = [
         }
     ],
     courseName: 'Soft Skills & Personality Development',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Soft+Skills+and+Personality+Development+Course+in+Mumbai'
 },
 
@@ -21010,8 +21010,8 @@ export const courses = [
     ],
     courseName: 'German A1 & A2',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+German+A1+and+A2+Course+in+Mumbai'
 },
 
@@ -21712,9 +21712,9 @@ export const courses = [
         },
     ],
      courseName: 'German A1',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+German+A1+Course+in+Mumbai'
 },
 
@@ -22620,9 +22620,9 @@ export const courses = [
         
     ],
      courseName: 'German A1',
-    contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+   contactEmail: 'mumbaileads@sevenmentor.com',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+German+A1+Course+in+Mumbai'
 },
 
@@ -23466,8 +23466,8 @@ export const courses = [
     ],
     courseName: 'Software Testing',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Software+Testing+Course+in+Mumbai'
 },
 
@@ -24553,8 +24553,8 @@ export const courses = [
     ],
     courseName: 'Salesforce ADM+DEV',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+Salesforce+Admin+Developer+Course+in+Mumbai'
 },
 
@@ -25572,8 +25572,8 @@ export const courses = [
     ],
     courseName: 'UI/UX Design',
     contactEmail: 'mumbaileads@sevenmentor.com',
-    contactNumber: '022-48904395',
-    whatsappNumber: '+918421176876',
+        contactNumber: '02248904395',
+        whatsappNumber: '+918421176876',
     whatsappMessage: 'Hi+I+am+looking+for+UI+UX+Design+Course+in+Mumbai'
 }
 
