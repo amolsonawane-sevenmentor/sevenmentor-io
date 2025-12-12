@@ -35,6 +35,18 @@ export default function Navbar() {
     };
 
     const navItems = [
+      {
+        name:"Home",
+        link:''
+      },
+      {
+        name:"Contact us",
+        link:'contact-us'
+      },
+      {
+        name:"About Us",
+        link:"about-us"
+      },
         {
             name: "Data Science",
             link: "#",
@@ -101,6 +113,7 @@ export default function Navbar() {
           { name: "HR Generalist", link: "/hr-generalist-course-in-mumbai" },
              ]
   },
+
     ];
 
     return (
@@ -163,7 +176,7 @@ export default function Navbar() {
                                 <Link
                                     href={item.link}
                                     className={`
-                                        flex items-center gap-1 px-4 h-10 rounded-md transition-all duration-300
+                                        flex items-center gap-3 px-2 h-10 rounded-md transition-all duration-300
                                         font-medium text-gray-700 hover:text-white hover:bg-[#009bf5]
                                         ${item.submenu ? 'group-hover:bg-[#009bf5] group-hover:text-white' : ''}
                                     `}
