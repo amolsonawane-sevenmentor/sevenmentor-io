@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { courses } from '../../../data/courses.js';
 import {
     Shield, ShieldCheck, ChevronDown, ChevronUp, BookOpen, Target, TrendingUp,
-    Calendar, MapPin, Phone, Mail, Code, CheckCircle, Star, MessageCircle
+    Calendar, MapPin, Phone, Mail, Code, CheckCircle, Star, MessageCircle,
+    User
 } from 'lucide-react';
 import EnrollForm from '../../../components/EnrollForm/EnrollForm.jsx';
 
@@ -13,7 +14,7 @@ export default function CoursePage({ params }) {
     // Unwrap params using React.use()
     const unwrappedParams = use(params);
     const { slug } = unwrappedParams;
-    
+
     const courseData = courses.find((c) => c.slug === slug);
 
 
@@ -129,9 +130,7 @@ export default function CoursePage({ params }) {
                             <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transform hover:scale-105 transition-all duration-300">
                                 Enroll Now - Limited Seats
                             </button>
-                            <button className="bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
-                                Download Syllabus
-                            </button>
+                           
                         </div>
                     </div>
                 </div>
@@ -279,6 +278,13 @@ export default function CoursePage({ params }) {
                                 </div>
                             ))}
                         </div>
+
+                        <div className="flex justify-center mt-8">
+    <button className="bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-800 px-10 py-4 rounded-xl font-bold text-lg shadow-lg transition-all duration-300 border border-gray-400">
+        Download Syllabus
+    </button>
+</div>
+
                     </div>
                 </section>
 
@@ -405,7 +411,7 @@ export default function CoursePage({ params }) {
                             <table className="w-full border-collapse">
                                 <thead>
                                     <tr className="bg-orange-50">
-                                        <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Batch ID</th>
+                                        
                                         <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Start Date</th>
                                         <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Mode</th>
                                         <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Timing</th>
@@ -416,9 +422,7 @@ export default function CoursePage({ params }) {
                                 <tbody>
                                     {batches.map((batch, idx) => (
                                         <tr key={idx} className="border-b border-gray-100 hover:bg-orange-50 transition-colors duration-200">
-                                            <td className="p-4">
-                                                <span className="font-semibold text-gray-900">{batch.id}</span>
-                                            </td>
+                                           
                                             <td className="p-4">
                                                 <div className="flex items-center gap-2">
                                                     <Calendar className="w-4 h-4 text-gray-500" />
@@ -492,30 +496,91 @@ export default function CoursePage({ params }) {
 
 
                 {/* Contact CTA Section */}
-                <section className="bg-gradient-to-br from-orange-900 via-orange-800 to-orange-900 text-white rounded-2xl shadow-xl overflow-hidden">
-                    <div className="p-12 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your {courseName} Career?</h2>
-                        <p className="text-xl text-orange-200 mb-8">Join thousands of students and become a certified professional</p>
+              {/* Contact CTA Section */}
+<section className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 text-white rounded-2xl shadow-xl overflow-hidden">
+    <div className="grid md:grid-cols-2 gap-0">
+        {/* Left Side - CTA Content */}
+        <div className="p-12 flex flex-col justify-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ready to Become a Security Analyst?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+                Join 2000+ students trained by SevenMentor and start your cyber security career in SOC teams
+            </p>
+            <div>
+                <a 
+                    href={`https://wa.me/${whatsappNumber.replace(/\+/g, '')}?text=${whatsappMessage}`}
+                    className="inline-flex items-center justify-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300"
+                >
+                    <User className="w-5 h-5" />
+                    Register Now
+                </a>
+            </div>
+        </div>
 
+        {/* Right Side - Contact Details */}
+        <div className="bg-slate-900/50 p-12 border-l border-slate-700">
+            <h3 className="text-2xl font-bold text-orange-500 mb-8 border-b-2 border-orange-500 inline-block pb-2">
+                Contact Details
+            </h3>
 
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                            <a href={`tel:${contactNumber}`} className="flex items-center justify-center gap-2 bg-white text-orange-900 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
-                                <Phone className="w-5 h-5" />
-                                {contactNumber}
-                            </a>
-                            <a href={`mailto:${contactEmail}`} className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
-                                <Mail className="w-5 h-5" />
-                                Get Course Details
-                            </a>
-                        </div>
-
-
-                        <div className="text-orange-200">
-                            <p className="mb-2">Visit us at our Mumbai training center</p>
-                            <p className="font-semibold">Andheri East, Mumbai - 400069</p>
-                        </div>
+            {/* Mumbai Location */}
+            <div className="mb-8">
+                <div className="flex items-start gap-3 mb-3">
+                    <div className="bg-orange-500/20 p-2 rounded-lg">
+                        <MapPin className="w-6 h-6 text-orange-500" />
                     </div>
-                </section>
+                    <div>
+                        <h4 className="text-xl font-bold text-orange-500 mb-2">Mumbai</h4>
+                        <p className="text-gray-300 leading-relaxed">
+                            Office no. 101 & part office no.1,<br />
+                            Civic Centre, MMGS Marg,<br />
+                            Dadar East, Dadar, Mumbai,<br />
+                            <span className="text-orange-500 font-semibold">Maharashtra 400014</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Call Us */}
+            <div className="mb-6">
+                <div className="flex items-center gap-3">
+                    <div className="bg-red-500 p-3 rounded-lg">
+                        <Phone className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                        <p className="text-gray-400 text-sm">Call Us</p>
+                        <a 
+                            href={`tel:${contactNumber}`}
+                            className="text-xl font-bold hover:text-orange-500 transition-colors"
+                        >
+                            {contactNumber}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {/* WhatsApp */}
+            <div>
+                <div className="flex items-center gap-3">
+                    <div className="bg-green-500 p-3 rounded-lg">
+                        <MessageCircle className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                        <p className="text-gray-400 text-sm">WhatsApp</p>
+                        <a 
+                            href={`https://wa.me/${whatsappNumber.replace(/\+/g, '')}?text=${whatsappMessage}`}
+                            className="text-xl font-bold hover:text-orange-500 transition-colors"
+                        >
+                            {whatsappNumber}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
             </div>
