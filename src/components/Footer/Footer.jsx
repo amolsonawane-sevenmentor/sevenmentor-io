@@ -1,3 +1,4 @@
+import { Instagram } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,34 +11,39 @@ export default function Footer() {
           </h3>
           <div className="flex gap-6">
             <a
-              href="#"
+              href="https://www.facebook.com/sevenmentor"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-orange-500 transition"
+              target="_blank"
             >
               <span className="text-lg font-bold">f</span>
             </a>
             <a
-              href="#"
+              href="https://x.com/SevenMentor"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-orange-500 transition"
+              target="_blank"
             >
               <span className="text-lg font-bold">𝕏</span>
             </a>
             <a
-              href="#"
+              href="https://www.youtube.com/@SevenMentor"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-orange-500 transition"
+              target="_blank"
             >
               <span className="text-lg font-bold">▶</span>
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/company/sevenmentor"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-orange-500 transition"
+              target="_blank"
             >
               <span className="text-lg font-bold">in</span>
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/sevenmentor_it_courses/?igsh=dTh6NjhpemF3Mndl"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-orange-500 transition"
+              target="_blank"
             >
-              <span className="text-lg font-bold">📷</span>
+              <span className="text-lg font-bold"><Instagram size={18} /></span>
             </a>
           </div>
         </div>

@@ -117,44 +117,9 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="bg-white shadow-sm sticky top-0 z-50 font-sans">
+        <nav className="bg-white shadow-sm sticky top-0 z-50 font-sans overflow-hidden">
             {/* Top Bar - Hidden on Mobile */}
-            <div className="border-b border-gray-100 bg-white hidden md:block">
-                <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between text-sm">
-                    {/* Left: Social Icons */}
-                    <div className="flex gap-4 items-center">
-                        <a href="https://www.facebook.com/sevenmentor" className="text-gray-600 hover:text-blue-600 transition-colors"><Facebook size={18} /></a>
-                        <a href="https://www.youtube.com/channel/UChNDri-8mgQhrlp2KHLpkYA" className="text-gray-600 hover:text-red-600 transition-colors"><Youtube size={18} /></a>
-                        <a href="https://www.linkedin.com/company/sevenmentor" className="text-gray-600 hover:text-blue-700 transition-colors"><Linkedin size={18} /></a>
-                        <a href="https://www.instagram.com/sevenmentor" className="text-gray-600 hover:text-pink-600 transition-colors"><Instagram size={18} /></a>
-                    </div>
-
-                    {/* Right: Quick Links */}
-                    <div className="flex gap-4 text-xs font-medium text-orange-500">
-                        {/* <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <Users size={14} className="text-blue-500" /> Job Fair
-                        </a>
-                        <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <Calendar size={14} className="text-blue-500" /> Events
-                        </a>
-                        <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <UserPlus size={14} className="text-blue-500" /> Teach With US
-                        </a>
-                        <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <Building2 size={14} className="text-blue-500" /> Corporate Training
-                        </a>
-                        <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <LinkIcon size={14} className="text-blue-500" /> Franchise
-                        </a>
-                        <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <CheckCircle size={14} className="text-blue-500" /> Placement
-                        </a>
-                        <a href="#" className="hover:text-orange-600 flex items-center gap-1">
-                            <Users size={14} className="text-blue-500" /> Careers
-                        </a> */}
-                    </div>
-                </div>
-            </div>
+           
 
             {/* Main Navigation */}
             <div className="max-w-7xl mx-auto px-4">
