@@ -609,7 +609,7 @@ export default function AdvancedExcelCoursePage() {
 
                 {/* Enrollment Form */}
                 <EnrollForm
-                    mailTo="vivekmandiya178@gmail.com"
+                    mailTo="mumbaileads@sevenmentor.com"
                     course='Advanced Excel'
                     contactNumber="022-48904395"
                 />

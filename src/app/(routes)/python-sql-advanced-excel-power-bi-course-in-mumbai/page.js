@@ -629,7 +629,7 @@ export default function FullStackDataAnalystCoursePage() {
 
                 {/* Enrollment Form */}
                 <EnrollForm
-                    mailTo="vivekmandiya178@gmail.com"
+                    mailTo="mumbaileads@sevenmentor.com"
                     course='Python + SQL + Advanced Excel + Power BI'
                     contactNumber="022-48904395"
                 />

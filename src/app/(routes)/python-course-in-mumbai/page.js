@@ -659,7 +659,7 @@ export default function PythonCoursePage() {
 
                 {/* Enrollment Form */}
                 <EnrollForm
-                    mailTo="vivekmandiya178@gmail.com"
+                    mailTo="mumbaileads@sevenmentor.com"
                     course='Python Programming'
                     contactNumber="022-48904395"
                 />

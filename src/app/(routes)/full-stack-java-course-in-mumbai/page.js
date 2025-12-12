@@ -688,7 +688,7 @@ export default function FullStackJavaCoursePage() {
 
                 {/* Enrollment Form */}
                 <EnrollForm
-                    mailTo="vivekmandiya178@gmail.com"
+                    mailTo="mumbaileads@sevenmentor.com"
                     course='Full Stack Java Developer'
                     contactNumber="022-48904395"
                 />
