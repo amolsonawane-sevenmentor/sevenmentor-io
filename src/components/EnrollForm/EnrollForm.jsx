@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { User, Mail, Phone, Award, MessageSquare, CheckCircle, XCircle } from "lucide-react";
+import {
+  User,
+  Mail,
+  Phone,
+  Award,
+  MessageSquare,
+  CheckCircle,
+  XCircle,
+} from "lucide-react";
 import axios from "axios";
 
-const EnrollForm = ({mailTo,course,contactNumber}) => {
+const EnrollForm = ({ mailTo, course, contactNumber }) => {
   const [initialValues, setInitialValues] = useState({
     Name: "",
     Email: "",
@@ -16,14 +24,21 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
   // Popup state
   const [popup, setPopup] = useState({
     show: false,
-    type: "",   // success | error
+    type: "", // success | error
     message: "",
   });
 
   const validationSchema = Yup.object({
-    Name: Yup.string().trim().min(3, "Name must be at least 3 characters").required("Full Name is required"),
-    Email: Yup.string().email("Invalid email format").required("Email is required"),
-    PhoneNumber: Yup.string().matches(/^[0-9]{10}$/, "Phone must be 10 digits").required("Phone Number is required"),
+    Name: Yup.string()
+      .trim()
+      .min(3, "Name must be at least 3 characters")
+      .required("Full Name is required"),
+    Email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    PhoneNumber: Yup.string()
+      .matches(/^[0-9]{10}$/, "Phone must be 10 digits")
+      .required("Phone Number is required"),
     Course: Yup.string().required("Please select a course"),
     Message: Yup.string(),
   });
@@ -33,15 +48,14 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
       const payload = {
         formData: values,
         to: mailTo,
-        Course:course,
+        Course: course,
         contactNo: contactNumber,
         bannerTitle: course,
         mailSubject: "New Course Enrollment",
         userEmailSubject: "Thanks for Enrolling",
-
       };
 
-      await axios.post("http://localhost:8080/api/main-form", payload);
+      await axios.post("/api/main-form", payload);
 
       // Show success popup
       setPopup({
@@ -80,7 +94,9 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
               <XCircle className="text-red-600 w-14 h-14 mx-auto mb-3" />
             )}
 
-            <h2 className="text-xl font-semibold text-gray-800">{popup.message}</h2>
+            <h2 className="text-xl font-semibold text-gray-800">
+              {popup.message}
+            </h2>
           </div>
         </div>
       )}
@@ -97,13 +113,19 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
             </div>
             <div>
               <h2 className="text-3xl font-bold text-gray-900">Enroll Now</h2>
-              <p className="text-sm text-gray-600">Fill the form and our team will contact you</p>
+              <p className="text-sm text-gray-600">
+                Fill the form and our team will contact you
+              </p>
             </div>
           </div>
         </div>
 
         <div className="p-8">
-          <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
             <Form className="space-y-6">
               {/* Row 1 */}
               <div className="grid md:grid-cols-2 gap-6">
@@ -121,7 +143,11 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
                       placeholder="Enter your full name"
                     />
                   </div>
-                  <ErrorMessage name="Name" component="p" className="text-red-500 text-sm mt-1" />
+                  <ErrorMessage
+                    name="Name"
+                    component="p"
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
 
                 {/* Email */}
@@ -138,7 +164,11 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
                       placeholder="Enter your email"
                     />
                   </div>
-                  <ErrorMessage name="Email" component="p" className="text-red-500 text-sm mt-1" />
+                  <ErrorMessage
+                    name="Email"
+                    component="p"
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
               </div>
 
@@ -158,11 +188,35 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
                       placeholder="Enter your phone number"
                     />
                   </div>
-                  <ErrorMessage name="PhoneNumber" component="p" className="text-red-500 text-sm mt-1" />
+                  <ErrorMessage
+                    name="PhoneNumber"
+                    component="p"
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
 
                 {/* Course */}
+
                 <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Course *
+                  </label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Field
+                      name="Course"
+                      type="text"
+                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
+                      placeholder="Enter Course"
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="Name"
+                    component="p"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+                {/* <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">Course *</label>
                   <div className="relative">
                     <Award className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -179,7 +233,7 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
                     </Field>
                   </div>
                   <ErrorMessage name="Course" component="p" className="text-red-500 text-sm mt-1" />
-                </div>
+                </div> */}
               </div>
 
               {/* Message */}
@@ -204,7 +258,9 @@ const EnrollForm = ({mailTo,course,contactNumber}) => {
                 >
                   Submit Enrollment
                 </button>
-                <p className="text-sm text-gray-600">Our team will contact you within 24 hours</p>
+                <p className="text-sm text-gray-600">
+                  Our team will contact you within 24 hours
+                </p>
               </div>
             </Form>
           </Formik>
