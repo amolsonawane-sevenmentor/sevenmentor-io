@@ -1,15 +1,534 @@
-"use client";
+'use client';
+import { useState, use } from 'react';
 import { notFound } from 'next/navigation';
-import CoursePage from '../../../components/Courses/CoursePage';
-import { courseDetails } from '../../../data/courseDetails';
+import { courses } from '../../../data/courses.js';
+import {
+    Shield, ShieldCheck, ChevronDown, ChevronUp, BookOpen, Target, TrendingUp,
+    Calendar, MapPin, Phone, Mail, Code, CheckCircle, Star, MessageCircle
+} from 'lucide-react';
+import EnrollForm from '../../../components/EnrollForm/EnrollForm.jsx';
 
-export default function Page({ params }) {
-    const { slug } = params;
-    const data = courseDetails[slug];
 
-    if (!data) {
-        return notFound();
+export default function CoursePage({ params }) {
+    // Unwrap params using React.use()
+    const unwrappedParams = use(params);
+    const { slug } = unwrappedParams;
+    
+    const courseData = courses.find((c) => c.slug === slug);
+
+
+    if (!courseData) {
+        notFound();
     }
 
-    return <CoursePage courseData={data} />;
+
+    const [expandedModule, setExpandedModule] = useState(null);
+    const [expandedFaq, setExpandedFaq] = useState(null);
+
+
+    const {
+        heroData,
+        stats,
+        aboutCourse,
+        syllabus,
+        features,
+        eligibility,
+        tools,
+        batches,
+        reviews,
+        faqs,
+        courseName,
+        contactEmail,
+        contactNumber,
+        whatsappNumber,
+        whatsappMessage
+    } = courseData;
+
+
+    const renderStars = (rating) => {
+        return Array.from({ length: 5 }, (_, idx) => (
+            <Star
+                key={idx}
+                className={`w-4 h-4 ${idx < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
+            />
+        ));
+    };
+
+
+    const colorClasses = {
+        orange: { bg: 'bg-orange-50', text: 'text-orange-600', border: 'border-orange-200' },
+        blue: { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-200' }
+    };
+
+
+    return (
+        <div className="min-h-screen bg-gray-50">
+            {/* SEO-friendly Header */}
+            <header className="sr-only">
+                <h1>{heroData.title}</h1>
+            </header>
+
+
+            {/* Floating Contact Buttons */}
+            <div className="fixed left-6 bottom-6 z-50 flex flex-col gap-3">
+                <a
+                    href={`tel:${contactNumber}`}
+                    className="w-14 h-14 bg-red-600 hover:bg-red-700 rounded-xl flex items-center justify-center shadow-2xl transform hover:scale-110 transition-all duration-300 group"
+                    aria-label="Call us"
+                >
+                    <Phone className="w-7 h-7 text-white" />
+                </a>
+                <a
+                    href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-14 h-14 bg-green-600 hover:bg-green-700 rounded-xl flex items-center justify-center shadow-2xl transform hover:scale-110 transition-all duration-300 group"
+                    aria-label="WhatsApp us"
+                >
+                    <MessageCircle className="w-7 h-7 text-white" />
+                </a>
+            </div>
+
+
+            {/* Hero Section */}
+            <section className="relative bg-gradient-to-br from-gray-900 via-orange-900 to-gray-900 text-white py-20 overflow-hidden">
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMS4xLS45LTItMi0yaC00Yy0xLjEgMC0yIC45LTIgMnY0YzAgMS4xLjkgMiAyIDJoNGMxLjEgMCAyLS45IDItMnYtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="text-center mb-8">
+                        <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/30 px-4 py-2 rounded-full mb-6">
+                            <Shield className="w-5 h-5 text-orange-300" />
+                            <span className="text-sm font-semibold text-orange-200">Certified Training Program</span>
+                        </div>
+                        <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                            {heroData.title}
+                        </h1>
+                        <p className="text-xl md:text-2xl text-orange-200 mb-3 font-medium">
+                            {heroData.subtitle}
+                        </p>
+                        <p className="text-lg text-gray-300 max-w-4xl mx-auto mb-8">
+                            {heroData.description}
+                        </p>
+
+
+                        <div className="flex flex-wrap justify-center gap-4 mb-8">
+                            {heroData.badges.map((badge, idx) => {
+                                const Icon = badge.icon;
+                                return (
+                                    <div key={idx} className={`${badge.color} text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg`}>
+                                        <Icon className="w-5 h-5" />
+                                        {badge.label}
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transform hover:scale-105 transition-all duration-300">
+                                Enroll Now - Limited Seats
+                            </button>
+                            <button className="bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
+                                Download Syllabus
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* Statistics Section */}
+            <section className="py-12 bg-white shadow-lg -mt-8 relative z-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {stats.map((stat, idx) => {
+                            const Icon = stat.icon;
+                            const colors = colorClasses[stat.color] || colorClasses.orange;
+                            return (
+                                <div key={idx} className="text-center">
+                                    <div className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center mx-auto mb-3`}>
+                                        <Icon className={`w-8 h-8 ${colors.text}`} />
+                                    </div>
+                                    <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+                                    <div className="text-sm text-gray-600">{stat.label}</div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+
+
+                {/* About Course Section */}
+                <section id="about" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
+                                <BookOpen className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900">{aboutCourse.title}</h2>
+                                <p className="text-sm text-gray-600">Everything you need to know about our program</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="p-8 space-y-8">
+                        <p className="text-gray-700 text-lg leading-relaxed">{aboutCourse.description}</p>
+
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {aboutCourse.highlights.map((highlight, idx) => (
+                                <div key={idx} className="flex items-start gap-3 p-4 bg-orange-50 border border-orange-100 rounded-xl">
+                                    <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                                    <span className="text-gray-800 font-medium">{highlight}</span>
+                                </div>
+                            ))}
+                        </div>
+
+
+                        {aboutCourse.sections.map((section, idx) => (
+                            <div key={idx} className="border-l-4 border-orange-500 pl-6 py-2">
+                                <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                    <Target className="w-5 h-5 text-orange-600" />
+                                    {section.heading}
+                                </h3>
+                                <p className="text-gray-700 leading-relaxed">{section.content}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+
+                {/* Course Syllabus */}
+                <section id="syllabus" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
+                                <ShieldCheck className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900">Course Syllabus</h2>
+                                <p className="text-sm text-gray-600">Comprehensive curriculum designed by industry experts</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="p-8">
+                        <div className="flex flex-wrap gap-4 mb-8">
+                            <div className="bg-orange-50 border border-orange-200 px-6 py-3 rounded-xl">
+                                <div className="text-sm text-orange-600 font-medium">Total Duration</div>
+                                <div className="text-2xl font-bold text-orange-700">{stats[0].value}</div>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 px-6 py-3 rounded-xl">
+                                <div className="text-sm text-orange-600 font-medium">Modules</div>
+                                <div className="text-2xl font-bold text-orange-700">{syllabus.modules.length}</div>
+                            </div>
+                            <div className="bg-orange-50 border border-orange-200 px-6 py-3 rounded-xl">
+                                <div className="text-sm text-orange-600 font-medium">Projects</div>
+                                <div className="text-2xl font-bold text-orange-700">20+</div>
+                            </div>
+                        </div>
+
+
+                        <div className="space-y-4">
+                            {syllabus.modules.map((module) => (
+                                <div key={module.id} className="border border-gray-200 rounded-xl overflow-hidden hover:border-orange-300 transition-all duration-300 hover:shadow-lg">
+                                    <button
+                                        onClick={() => setExpandedModule(expandedModule === module.id ? null : module.id)}
+                                        className="w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-orange-50 transition-colors duration-300"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-orange-500 rounded-lg flex items-center justify-center text-white font-bold">
+                                                {module.id}
+                                            </div>
+                                            <div className="text-left">
+                                                <h3 className="font-bold text-gray-900">{module.title}</h3>
+                                                <div className="flex items-center gap-2 mt-1">
+                                                    <Calendar className="w-4 h-4 text-gray-500" />
+                                                    <span className="text-sm text-gray-600">{module.duration}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {expandedModule === module.id ? (
+                                            <ChevronUp className="w-5 h-5 text-orange-500" />
+                                        ) : (
+                                            <ChevronDown className="w-5 h-5 text-gray-500" />
+                                        )}
+                                    </button>
+
+
+                                    {expandedModule === module.id && (
+                                        <div className="p-5 bg-white border-t border-gray-200">
+                                            <div className="space-y-2">
+                                                {module.topics.map((topic, idx) => (
+                                                    <div key={idx} className="flex items-start gap-3 py-2">
+                                                        <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                                                        <span className="text-gray-700">{topic}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* Enrollment Form */}
+                <EnrollForm
+                    mailTo={contactEmail}
+                    course={courseName}
+                    contactNumber={contactNumber}
+                />
+
+
+                {/* Key Features */}
+                <section id="features" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
+                                <Star className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900">Key Features</h2>
+                                <p className="text-sm text-gray-600">What makes our course stand out</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="p-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {features.map((feature, idx) => {
+                                const Icon = feature.icon;
+                                const colors = colorClasses[feature.color] || colorClasses.orange;
+                                return (
+                                    <div key={idx} className={`p-6 ${colors.bg} border ${colors.border} rounded-xl hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1`}>
+                                        <div className={`w-12 h-12 bg-white border ${colors.border} rounded-lg flex items-center justify-center mb-4`}>
+                                            <Icon className={`w-6 h-6 ${colors.text}`} />
+                                        </div>
+                                        <h3 className="font-bold text-gray-900 mb-2 text-lg">{feature.title}</h3>
+                                        <p className="text-gray-700">{feature.description}</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* Tools & Technologies */}
+                <section className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
+                                <Code className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900">Tools & Technologies</h2>
+                                <p className="text-sm text-gray-600">Master industry-standard security tools</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="p-8">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            {tools.map((tool, idx) => {
+                                const Icon = tool.icon;
+                                return (
+                                    <div key={idx} className="p-6 bg-gray-50 border border-gray-200 rounded-xl hover:border-orange-400 hover:shadow-lg transition-all duration-300 text-center">
+                                        <Icon className="w-10 h-10 text-orange-600 mx-auto mb-3" />
+                                        <h4 className="font-bold text-gray-900">{tool.name}</h4>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* Eligibility */}
+                <section id="eligibility" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
+                                <CheckCircle className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900">Course Eligibility</h2>
+                                <p className="text-sm text-gray-600">Who can enroll in this course</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="p-8">
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {eligibility.map((req, idx) => (
+                                <div key={idx} className="flex items-center gap-3 p-4 bg-orange-50 border border-orange-200 rounded-xl">
+                                    <CheckCircle className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                                    <span className="text-gray-800 font-medium">{req.label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* Batch Schedule */}
+                <section id="schedule" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
+                                <Calendar className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900">Upcoming Batches</h2>
+                                <p className="text-sm text-gray-600">Choose a batch that fits your schedule</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="p-8">
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr className="bg-orange-50">
+                                        <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Batch ID</th>
+                                        <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Start Date</th>
+                                        <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Mode</th>
+                                        <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Timing</th>
+                                        <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Schedule</th>
+                                        <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {batches.map((batch, idx) => (
+                                        <tr key={idx} className="border-b border-gray-100 hover:bg-orange-50 transition-colors duration-200">
+                                            <td className="p-4">
+                                                <span className="font-semibold text-gray-900">{batch.id}</span>
+                                            </td>
+                                            <td className="p-4">
+                                                <div className="flex items-center gap-2">
+                                                    <Calendar className="w-4 h-4 text-gray-500" />
+                                                    <span className="text-gray-700">{batch.startDate}</span>
+                                                </div>
+                                            </td>
+                                            <td className="p-4">
+                                                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-700">
+                                                    {batch.mode}
+                                                </span>
+                                            </td>
+                                            <td className="p-4 text-gray-700 text-sm">{batch.timing}</td>
+                                            <td className="p-4 text-gray-700 text-sm">{batch.schedule}</td>
+                                            <td className="p-4">
+                                                <div className="flex items-center gap-2">
+                                                    <MapPin className="w-4 h-4 text-gray-500" />
+                                                    <span className="text-gray-700">{batch.location}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* FAQ Section */}
+                <section id="faq" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-orange-50 to-white p-6 border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl flex items-center justify-center">
+                                <ShieldCheck className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
+                                <p className="text-sm text-gray-600">Got questions? We have got answers</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="p-8">
+                        <div className="space-y-4">
+                            {faqs.map((faq) => (
+                                <div key={faq.id} className="border border-gray-200 rounded-xl overflow-hidden hover:border-orange-400 transition-colors duration-300">
+                                    <button
+                                        onClick={() => setExpandedFaq(expandedFaq === faq.id ? null : faq.id)}
+                                        className="w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-orange-50 transition-colors duration-300 text-left"
+                                    >
+                                        <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
+                                        {expandedFaq === faq.id ? (
+                                            <ChevronUp className="w-5 h-5 text-orange-500 flex-shrink-0" />
+                                        ) : (
+                                            <ChevronDown className="w-5 h-5 text-gray-500 flex-shrink-0" />
+                                        )}
+                                    </button>
+
+
+                                    {expandedFaq === faq.id && (
+                                        <div className="p-5 bg-white border-t border-gray-200">
+                                            <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* Contact CTA Section */}
+                <section className="bg-gradient-to-br from-orange-900 via-orange-800 to-orange-900 text-white rounded-2xl shadow-xl overflow-hidden">
+                    <div className="p-12 text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your {courseName} Career?</h2>
+                        <p className="text-xl text-orange-200 mb-8">Join thousands of students and become a certified professional</p>
+
+
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                            <a href={`tel:${contactNumber}`} className="flex items-center justify-center gap-2 bg-white text-orange-900 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
+                                <Phone className="w-5 h-5" />
+                                {contactNumber}
+                            </a>
+                            <a href={`mailto:${contactEmail}`} className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300">
+                                <Mail className="w-5 h-5" />
+                                Get Course Details
+                            </a>
+                        </div>
+
+
+                        <div className="text-orange-200">
+                            <p className="mb-2">Visit us at our Mumbai training center</p>
+                            <p className="font-semibold">Andheri East, Mumbai - 400069</p>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+
+
+            {/* Footer Schema */}
+            <footer className="bg-gray-900 text-white py-8 mt-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    {/* <p className="text-gray-400">© 2025 {courseName} Training Institute Mumbai. All rights reserved.</p> */}
+                    <p>© 2025 SevenMentor Pvt. Ltd. All rights reserved.</p>
+                    <p className="text-sm text-gray-500 mt-2">Best {courseName} Course | Professional Training | Certification | Mumbai</p>
+                </div>
+            </footer>
+        </div>
+    );
 }
