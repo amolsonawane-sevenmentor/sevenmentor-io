@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 
-const PoupFormEnroll = ({ mailTo, course, contactNumber }) => {
+const PoupFormEnroll = ({ mailTo, course, contactNumber, onClose }) => {
   const [initialValues, setInitialValues] = useState({
     Name: "",
     Email: "",
@@ -87,10 +87,12 @@ const PoupFormEnroll = ({ mailTo, course, contactNumber }) => {
       {/* ---------------- Popup Container ---------------- */}
       <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
         <div className="bg-white max-w-2xl w-full rounded-2xl shadow-2xl animate-fadeIn relative overflow-hidden">
-
           {/* Close Button */}
           <button
-            onClick={() => setShowForm(false)}
+            onClick={() => {
+              if (onClose) onClose();
+              setShowForm(false);
+            }}
             className="absolute top-4 right-4 text-gray-600 hover:text-red-500"
           >
             <XCircle className="w-7 h-7" />
@@ -133,7 +135,6 @@ const PoupFormEnroll = ({ mailTo, course, contactNumber }) => {
               onSubmit={handleSubmit}
             >
               <Form className="space-y-6">
-                
                 {/* Row 1 */}
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Name */}
@@ -181,7 +182,6 @@ const PoupFormEnroll = ({ mailTo, course, contactNumber }) => {
 
                 {/* Row 2 */}
                 <div className="grid md:grid-cols-2 gap-6">
-                  
                   {/* Phone */}
                   <div>
                     <label className="block text-sm font-semibold mb-2">
@@ -223,7 +223,6 @@ const PoupFormEnroll = ({ mailTo, course, contactNumber }) => {
                       className="text-red-500 text-sm mt-1"
                     />
                   </div>
-
                 </div>
 
                 {/* Message */}
@@ -252,7 +251,6 @@ const PoupFormEnroll = ({ mailTo, course, contactNumber }) => {
                     Our team will contact you within 24 hours
                   </p>
                 </div>
-
               </Form>
             </Formik>
           </div>
