@@ -67,7 +67,7 @@ export default function ContactUsPage() {
         userEmailSubject: "Thanks for Contacting Us",
       };
 
-      await axios.post("/api/main-form", payload);
+      await axios.post("http://localhost:8080/api/main-form", payload);
 
       setPopup({
         show: true,

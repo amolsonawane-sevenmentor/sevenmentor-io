@@ -117,13 +117,13 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="bg-white shadow-sm sticky top-0 z-50 font-sans overflow-hidden">
+        <nav className="bg-white shadow-sm sticky top-0 z-50 font-sans">
             {/* Top Bar - Hidden on Mobile */}
            
 
             {/* Main Navigation */}
-            <div className="max-w-7xl mx-auto px-4">
-                <div className="flex items-center justify-between h-16 md:h-20">
+            <div className="max-w-7xl mx-auto ">
+                <div className="flex items-center justify-around h-16 md:h-20">
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0 flex items-center gap-2">
                         <div className="relative">
@@ -136,40 +136,48 @@ export default function Navbar() {
 
                     {/* Desktop Menu */}
                     <div className="hidden lg:flex h-full items-center">
-                        {navItems.map((item, idx) => (
-                            <div key={idx} className="relative group h-full flex items-center">
-                                <Link
-                                    href={item.link}
-                                    className={`
-                                        flex items-center gap-3 px-2 h-10 rounded-md transition-all duration-300
-                                        font-medium text-gray-700 hover:text-white hover:bg-[#009bf5]
-                                        ${item.submenu ? 'group-hover:bg-[#009bf5] group-hover:text-white' : ''}
-                                    `}
-                                >
-                                    {item.name}
-                                    {item.submenu && <ChevronDown size={14} />}
-                                </Link>
+    {navItems.map((item, idx) => (
+        <div key={idx} className="relative group h-full flex items-center">
+            <Link
+                href={item.link}
+                className={`
+                    flex items-center gap-3 px-2 h-10 rounded-md transition-all duration-300
+                    font-medium text-gray-700 hover:text-white hover:bg-[#009bf5]
+                    ${item.submenu ? 'group-hover:bg-[#009bf5] group-hover:text-white' : ''}
+                `}
+            >
+                {item.name}
+                {item.submenu && <ChevronDown size={14} />}
+            </Link>
 
-                                {/* Dropdown Menu */}
-                                {item.submenu && (
-                                    <div className="absolute top-full left-0 w-72 bg-white shadow-xl border-t-2 border-[#009bf5] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                                        <div className="py-2">
-                                            {item.submenu.map((subItem, subIdx) => (
-                                                <Link
-                                                    key={subIdx}
-                                                    href={subItem.link}
-                                                    className="flex items-center gap-2 px-6 py-3 text-sm text-gray-600 hover:text-[#009bf5] hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0"
-                                                >
-                                                    <ChevronsRight size={14} className="text-orange-500" />
-                                                    {subItem.name}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+            {/* Dropdown Menu */}
+            {item.submenu && (
+                <div
+                    className="overflow-hidden absolute top-full left-1/2 -translate-x-1/2 
+                    w-72 bg-white shadow-xl border-t-2 border-[#009bf5] 
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                    transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 
+                    z-50"
+                >
+                    <div className="py-2">
+                        {item.submenu.map((subItem, subIdx) => (
+                            <Link
+                                key={subIdx}
+                                href={subItem.link}
+                                className="flex items-center gap-2 px-6 py-3 text-sm text-gray-600 
+                                hover:text-[#009bf5] hover:bg-gray-50 transition-colors 
+                                border-b border-gray-50 last:border-0"
+                            >
+                                <ChevronsRight size={14} className="text-orange-500" />
+                                {subItem.name}
+                            </Link>
                         ))}
                     </div>
+                </div>
+            )}
+        </div>
+    ))}
+</div>
 
                     {/* Mobile Menu Button */}
                     <button className="lg:hidden p-2 text-gray-600" onClick={toggleMenu}>
