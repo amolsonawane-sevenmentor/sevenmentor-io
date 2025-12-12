@@ -76,11 +76,7 @@ function Home() {
 
       {/* Software Courses */}
       <div className="bg-white">
-        <CourseSection
-          title="Software Development Courses"
-          courses={getCoursesByCategory('Software')}
-          description="Learn modern software development frameworks and tools"
-        />
+       
       </div>
 
       {/* Data Science Courses */}
@@ -103,11 +99,7 @@ function Home() {
 
       {/* CAD Courses */}
       <div className="bg-gray-50">
-        <CourseSection
-          title="CAD Courses"
-          courses={getCoursesByCategory('CAD')}
-          description="Master computer-aided design tools for engineering and architecture"
-        />
+
       </div>
 
       {/* Call to Action Section */}
