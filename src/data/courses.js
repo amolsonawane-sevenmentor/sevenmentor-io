@@ -23467,25 +23467,4 @@ export const courses = [
     whatsappMessage: 'Hi+I+am+looking+for+Software+Testing+Course+in+Mumbai'
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ];
