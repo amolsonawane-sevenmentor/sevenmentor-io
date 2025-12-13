@@ -26,7 +26,7 @@ const PoupFormEnroll = ({ mailTo, course, contactNumber, onClose }) => {
     message: "",
   });
 
-  const [showForm, setShowForm] = useState(true); // 🔥 popup state
+  const [showForm, setShowForm] = useState(true); 
 
   const validationSchema = Yup.object({
     Name: Yup.string()

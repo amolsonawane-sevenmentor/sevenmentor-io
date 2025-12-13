@@ -53,57 +53,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 border-t border-gray-800 pt-6">
             {/* About SevenMentor */}
-            <div>
-              <h4 className="text-white font-bold text-lg mb-6 pb-2 border-b-2 border-orange-500 inline-block">
-                About SevenMentor
-              </h4>
-              <ul className="space-y-3 mt-4">
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition flex items-center gap-2"
-                  >
-                    <span className="text-orange-500">›</span> Enterprises
-                    Network Solution
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition flex items-center gap-2"
-                  >
-                    <span className="text-orange-500">›</span> HR Recruitment IT
-                    & Non-IT
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition flex items-center gap-2"
-                  >
-                    <span className="text-orange-500">›</span> Network
-                    Consulting Services
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition flex items-center gap-2"
-                  >
-                    <span className="text-orange-500">›</span> Top Corporate
-                    Training In Pune
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition flex items-center gap-2"
-                  >
-                    <span className="text-orange-500">›</span> Terms of Use
-                  </a>
-                </li>
-              </ul>
-            </div>
+           
             <div>
               <h4 className="text-white font-bold text-lg mb-6 pb-2 border-b-2 border-orange-500 inline-block">
               Data Science
@@ -119,7 +69,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/data-analytics-course-in-mumbai"
                     className="text-gray-400 hover:text-white transition flex items-center gap-2"
                   >
                     <span className="text-orange-500">›</span> Data Analytics
@@ -189,14 +139,6 @@ CCNA + Linux + AWS
                     className="text-gray-400 hover:text-white transition flex items-center gap-2"
                   >
                     <span className="text-orange-500">›</span> CCNA + Linux + CEH
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/cyber-security-analyst-program-training-in-mumbai"
-                    className="text-gray-400 hover:text-white transition flex items-center gap-2"
-                  >
-                    <span className="text-orange-500">›</span>Cyber Security Analyst Program
                   </a>
                 </li>
                 <li>

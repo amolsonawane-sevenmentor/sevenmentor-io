@@ -345,13 +345,33 @@ export default function CoursePage({ params }) {
               ))}
             </div>
 
-            {/* <div className="flex justify-center mt-8">
-    <button className="bg-gradient-to-r from-gray-200 to-gray-300 hover:from-gray-300 hover:to-gray-400 text-gray-800 px-10 py-4 rounded-xl font-bold text-lg shadow-lg transition-all duration-300 border border-gray-400"
-    onClick={() => setShowForm(true)}
-    >
-                       
-    </button>
-</div>  */}
+            <div className="flex justify-center mt-8">
+  <button
+    onClick={() => setShowForm((pre) => !pre)}
+    className="
+      relative overflow-hidden
+      bg-gradient-to-r from-orange-500 via-pink-500 to-red-500
+      text-white px-12 py-4 rounded-2xl
+      font-extrabold text-lg tracking-wide
+      shadow-[0_0_30px_rgba(255,100,100,0.6)]
+      hover:shadow-[0_0_45px_rgba(255,100,100,0.9)]
+      transition-all duration-300
+      hover:scale-110
+      animate-pulse
+      border border-white/30
+    "
+  >
+    {/* Shine effect */}
+    <span className="absolute inset-0 bg-white/20 blur-xl opacity-0 hover:opacity-100 transition duration-500"></span>
+
+    {/* Text */}
+    <span className="relative z-10 flex items-center gap-2">
+      🚀 Download Syllabus
+      <span className="animate-bounce">🔥</span>
+    </span>
+  </button>
+</div>
+
           </div>
         </section>
 
