@@ -77,10 +77,10 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="/data-analytics-course-in-mumbai"
+                    href="/advanced-excel-course-in-mumbai"
                     className="text-gray-400 hover:text-white transition flex items-center gap-2"
                   >
-                    <span className="text-orange-500">›</span> Advance Excel
+                    <span className="text-orange-500">›</span> Advanced Excel
                   </a>
                 </li>
                 <li>
@@ -235,7 +235,7 @@ CCNA + Linux + AWS
                     href="/web-development-course-in-mumbai"
                     className="text-gray-400 hover:text-white transition flex items-center gap-2"
                   >
-                    <span className="text-orange-500">›</span> web development
+                    <span className="text-orange-500">›</span> Web Development
                   </a>
                 </li>
                 <li>
