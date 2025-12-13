@@ -1,7 +1,9 @@
 "use client";
+
 import { useState, use } from "react";
 import { notFound } from "next/navigation";
 import { courses } from "../../../data/courses.js";
+import moment from "moment";
 import {
   Shield,
   ShieldCheck,
@@ -27,7 +29,6 @@ export default function CoursePage({ params }) {
   // Unwrap params using React.use()
   const unwrappedParams = use(params);
   const { slug } = unwrappedParams;
-
   const courseData = courses.find((c) => c.slug === slug);
 
   if (!courseData) {
@@ -37,7 +38,6 @@ export default function CoursePage({ params }) {
   const [expandedModule, setExpandedModule] = useState(null);
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  console.log("showForm", showForm);
 
   const {
     heroData,
@@ -56,6 +56,54 @@ export default function CoursePage({ params }) {
     whatsappNumber,
     whatsappMessage,
   } = courseData;
+
+  const generateBatchSchedule = () => {
+    const batchSchedule = [];
+    let regularBatches = 0;
+    let weekendBatches = 0;
+    let currentDate = moment().add(4, "days"); // Start from 4 days after the current date
+    let lastRegularBatchDate = null; // To keep track of the last regular batch date
+
+    // Loop until we get 2 regular and 2 weekend batches
+    while (regularBatches < 2 || weekendBatches < 2) {
+      const dayOfWeek = currentDate.day(); // Get the current day of the week (0 - Sunday, 6 - Saturday)
+      let batchType = "";
+
+      // Check if it's a weekend (Saturday or Sunday)
+      if ((dayOfWeek === 6 || dayOfWeek === 0) && weekendBatches < 2) {
+        batchType = "Weekend Batch";
+        weekendBatches++;
+      }
+      // Check for regular weekday batch (Monday to Friday) with a 3-day gap
+      else if (
+        dayOfWeek >= 1 &&
+        dayOfWeek <= 5 &&
+        regularBatches < 2 &&
+        (!lastRegularBatchDate || currentDate.diff(lastRegularBatchDate, "days") >= 3)
+      ) {
+        batchType = "Regular Batch";
+        regularBatches++;
+        lastRegularBatchDate = moment(currentDate); // Update last regular batch date
+      }
+
+      // If a batch type was assigned, add it to the schedule
+      if (batchType) {
+        batchSchedule.push({
+          date: currentDate.format("DD/MM/YYYY"),
+          batchType,
+          schedule: batchType === "Weekend Batch" ? "Sat-Sun" : "Mon-Fri",
+        });
+      }
+
+      // Move to the next day
+      currentDate = currentDate.add(1, "days");
+    }
+
+    return batchSchedule;
+  };
+
+  // Generate the batch schedule
+  const dynamicBatchSchedule = generateBatchSchedule();
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, idx) => (
@@ -111,7 +159,6 @@ export default function CoursePage({ params }) {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-gray-900 via-orange-900 to-gray-900 text-white py-20 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMS4xLS45LTItMi0yaC00Yy0xLjEgMC0yIC45LTIgMnY0YzAgMS4xLjkgMiAyIDJoNGMxLjEgMCAyLS45IDItMnYtNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/30 px-4 py-2 rounded-full mb-6">
@@ -144,7 +191,6 @@ export default function CoursePage({ params }) {
                 );
               })}
             </div>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transform hover:scale-105 transition-all duration-300"
@@ -210,12 +256,10 @@ export default function CoursePage({ params }) {
               </div>
             </div>
           </div>
-
           <div className="p-8 space-y-8">
             <p className="text-gray-700 text-lg leading-relaxed">
               {aboutCourse.description}
             </p>
-
             <div className="grid md:grid-cols-2 gap-4">
               {aboutCourse.highlights.map((highlight, idx) => (
                 <div
@@ -227,16 +271,13 @@ export default function CoursePage({ params }) {
                 </div>
               ))}
             </div>
-
             {aboutCourse.sections.map((section, idx) => (
               <div key={idx} className="border-l-4 border-orange-500 pl-6 py-2">
                 <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
                   <Target className="w-5 h-5 text-orange-600" />
                   {section.heading}
                 </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  {section.content}
-                </p>
+                <p className="text-gray-700 leading-relaxed">{section.content}</p>
               </div>
             ))}
           </div>
@@ -262,7 +303,6 @@ export default function CoursePage({ params }) {
               </div>
             </div>
           </div>
-
           <div className="p-8">
             <div className="flex flex-wrap gap-4 mb-8">
               <div className="bg-orange-50 border border-orange-200 px-6 py-3 rounded-xl">
@@ -325,15 +365,11 @@ export default function CoursePage({ params }) {
                       <ChevronDown className="w-5 h-5 text-gray-500" />
                     )}
                   </button>
-
                   {expandedModule === module.id && (
                     <div className="p-5 bg-white border-t border-gray-200">
                       <div className="space-y-2">
                         {module.topics.map((topic, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-start gap-3 py-2"
-                          >
+                          <div key={idx} className="flex items-start gap-3 py-2">
                             <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
                             <span className="text-gray-700">{topic}</span>
                           </div>
@@ -346,32 +382,16 @@ export default function CoursePage({ params }) {
             </div>
 
             <div className="flex justify-center mt-8">
-  <button
-    onClick={() => setShowForm((pre) => !pre)}
-    className="
-      relative overflow-hidden
-      bg-gradient-to-r from-orange-500 via-pink-500 to-red-500
-      text-white px-12 py-4 rounded-2xl
-      font-extrabold text-lg tracking-wide
-      shadow-[0_0_30px_rgba(255,100,100,0.6)]
-      hover:shadow-[0_0_45px_rgba(255,100,100,0.9)]
-      transition-all duration-300
-      hover:scale-110
-      animate-pulse
-      border border-white/30
-    "
-  >
-    {/* Shine effect */}
-    <span className="absolute inset-0 bg-white/20 blur-xl opacity-0 hover:opacity-100 transition duration-500"></span>
-
-    {/* Text */}
-    <span className="relative z-10 flex items-center gap-2">
-      🚀 Download Syllabus
-      <span className="animate-bounce">🔥</span>
-    </span>
-  </button>
-</div>
-
+              <button
+                onClick={() => setShowForm((pre) => !pre)}
+                className="relative overflow-hidden bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 text-white px-12 py-4 rounded-2xl font-extrabold text-lg tracking-wide shadow-[0_30px_rgba(255,100,100,0.6)] hover:shadow-[0_45px_rgba(255,100,100,0.9)] transition-all duration-300 hover:scale-110 animate-pulse border border-white/30"
+              >
+                <span className="absolute inset-0 bg-white/20 blur-xl opacity-0 hover:opacity-100 transition duration-500"></span>
+                <span className="relative z-10 flex items-center gap-2">
+                  Download Syllabus <span className="animate-bounce">↓</span>
+                </span>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -395,13 +415,11 @@ export default function CoursePage({ params }) {
               </div>
             </div>
           </div>
-
           <div className="p-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, idx) => {
                 const Icon = feature.icon;
-                const colors =
-                  colorClasses[feature.color] || colorClasses.orange;
+                const colors = colorClasses[feature.color] || colorClasses.orange;
                 return (
                   <div
                     key={idx}
@@ -440,7 +458,6 @@ export default function CoursePage({ params }) {
               </div>
             </div>
           </div>
-
           <div className="p-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {tools.map((tool, idx) => {
@@ -479,7 +496,6 @@ export default function CoursePage({ params }) {
               </div>
             </div>
           </div>
-
           <div className="p-8">
             <div className="grid md:grid-cols-2 gap-4">
               {eligibility.map((req, idx) => (
@@ -515,7 +531,6 @@ export default function CoursePage({ params }) {
               </div>
             </div>
           </div>
-
           <div className="p-8">
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
@@ -525,10 +540,7 @@ export default function CoursePage({ params }) {
                       Start Date
                     </th>
                     <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">
-                      Mode
-                    </th>
-                    <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">
-                      Timing
+                      Batch Type
                     </th>
                     <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-orange-200">
                       Schedule
@@ -539,7 +551,7 @@ export default function CoursePage({ params }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {batches.map((batch, idx) => (
+                  {dynamicBatchSchedule.map((batch, idx) => (
                     <tr
                       key={idx}
                       className="border-b border-gray-100 hover:bg-orange-50 transition-colors duration-200"
@@ -547,28 +559,19 @@ export default function CoursePage({ params }) {
                       <td className="p-4">
                         <div className="flex items-center gap-2">
                           <Calendar className="w-4 h-4 text-gray-500" />
-                          <span className="text-gray-700">
-                            {batch.startDate}
-                          </span>
+                          <span className="text-gray-700">{batch.date}</span>
                         </div>
                       </td>
                       <td className="p-4">
                         <span className="px-3 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-700">
-                          {batch.mode}
+                          {batch.batchType}
                         </span>
                       </td>
-                      <td className="p-4 text-gray-700 text-sm">
-                        {batch.timing}
-                      </td>
-                      <td className="p-4 text-gray-700 text-sm">
-                        {batch.schedule}
-                      </td>
+                      <td className="p-4 text-gray-700 text-sm">{batch.schedule}</td>
                       <td className="p-4">
                         <div className="flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-gray-500" />
-                          <span className="text-gray-700">
-                            {batch.location}
-                          </span>
+                          <span className="text-gray-700">Mumbai</span>
                         </div>
                       </td>
                     </tr>
@@ -599,7 +602,6 @@ export default function CoursePage({ params }) {
               </div>
             </div>
           </div>
-
           <div className="p-8">
             <div className="space-y-4">
               {faqs.map((faq) => (
@@ -622,7 +624,6 @@ export default function CoursePage({ params }) {
                       <ChevronDown className="w-5 h-5 text-gray-500 flex-shrink-0" />
                     )}
                   </button>
-
                   {expandedFaq === faq.id && (
                     <div className="p-5 bg-white border-t border-gray-200">
                       <p className="text-gray-700 leading-relaxed">
@@ -636,7 +637,6 @@ export default function CoursePage({ params }) {
           </div>
         </section>
 
-        {/* Contact CTA Section */}
         {/* Contact CTA Section */}
         <section className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 text-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid md:grid-cols-2 gap-0">
@@ -718,10 +718,7 @@ export default function CoursePage({ params }) {
                   <div>
                     <p className="text-gray-400 text-sm">WhatsApp</p>
                     <a
-                      href={`https://wa.me/${whatsappNumber.replace(
-                        /\+/g,
-                        ""
-                      )}?text=${whatsappMessage}`}
+                      href={`https://wa.me/${whatsappNumber.replace(/\+/g, "")}?text=${whatsappMessage}`}
                       className="text-xl font-bold hover:text-orange-500 transition-colors"
                     >
                       {whatsappNumber}
@@ -734,17 +731,20 @@ export default function CoursePage({ params }) {
         </section>
       </div>
 
-      {/* Footer Schema */}
+      {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* <p className="text-gray-400">© 2025 {courseName} Training Institute Mumbai. All rights reserved.</p> */}
+          <p className="text-gray-400">
+            © 2025 {courseName} Training Institute Mumbai. All rights reserved.
+          </p>
           <p>© 2025 SevenMentor Pvt. Ltd. All rights reserved.</p>
           <p className="text-sm text-gray-500 mt-2">
-            Best {courseName} Course | Professional Training | Certification |
+            Best {courseName} Course & Professional Training & Certification
             Mumbai
           </p>
         </div>
       </footer>
+
       {showForm && (
         <PoupFormEnroll
           mailTo={contactEmail}
