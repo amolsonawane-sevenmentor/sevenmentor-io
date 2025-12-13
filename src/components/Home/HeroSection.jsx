@@ -147,25 +147,27 @@ export default function HeroSection() {
 
             {/* Search Bar - Cleaner Design */}
             <div className="relative">
-              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 flex items-center gap-2 hover:shadow-2xl transition-shadow duration-300 relative z-50">
-                <div className="pl-4 pr-2">
-                  <Search className="w-5 h-5 text-gray-400" />
+              <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 flex flex-col sm:flex-row items-center gap-2 hover:shadow-2xl transition-shadow duration-300 relative z-50">
+                <div className="flex items-center flex-1 w-full">
+                  <div className="pl-4 pr-2">
+                    <Search className="w-5 h-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search courses: Java, Python, AWS, Data Science..."
+                    className="flex-1 px-2 py-4 outline-none text-gray-700 placeholder:text-gray-400 min-w-0"
+                    value={searchQuery}
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                    onFocus={() => {
+                      if (searchQuery.trim().length > 0) setShowSuggestions(true);
+                    }}
+                    onClick={(e) => e.stopPropagation()} // Prevent closing when clicking input
+                  />
                 </div>
-                <input
-                  type="text"
-                  placeholder="Search courses: Java, Python, AWS, Data Science..."
-                  className="flex-1 px-2 py-4 outline-none text-gray-700 placeholder:text-gray-400"
-                  value={searchQuery}
-                  onChange={handleInputChange}
-                  onKeyDown={handleKeyDown}
-                  onFocus={() => {
-                    if (searchQuery.trim().length > 0) setShowSuggestions(true);
-                  }}
-                  onClick={(e) => e.stopPropagation()} // Prevent closing when clicking input
-                />
                 <button
                   onClick={handleSearch}
-                  className="bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-orange-200/50 whitespace-nowrap"
+                  className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-orange-200/50 whitespace-nowrap"
                 >
                   Search
                 </button>

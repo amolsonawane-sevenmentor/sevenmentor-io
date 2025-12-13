@@ -177,9 +177,7 @@ export default function ContactUsPage() {
             >
              022-48904395
             </a>
-            <p className="text-sm text-gray-600">
-              Mon - Sat: 9:00 AM - 7:00 PM
-            </p>
+            
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
@@ -200,7 +198,7 @@ export default function ContactUsPage() {
             >
               +91 8421176876
             </a>
-            <p className="text-sm text-gray-600">Available 24/7</p>
+           
           </div>
         </div>
 
