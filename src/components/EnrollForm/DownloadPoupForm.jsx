@@ -14,7 +14,7 @@ import axios from "axios";
 
 const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
   // Define your PDF link - IMPORTANT: Add your actual PDF URL here
-  const pdfLink = "https://example.com/your-course-brochure.pdf"; // ⚠️ CHANGE THIS TO YOUR ACTUAL PDF URL
+  const pdfLink = "https://sevenmentor-website.s3.eu-north-1.amazonaws.com/uploads/pdf/comp-new-HR-Audit_11zon-1762952119864.pdf";
 
   const initialValues = {
     Name: "",
@@ -50,7 +50,7 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
 
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     console.log("Form submitted with values:", values);
-    
+
     try {
       const payload = {
         formData: {
@@ -66,10 +66,10 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
       };
 
       console.log("Sending API request with payload:", payload);
-      
+
       // Use relative path for API endpoint instead of localhost
       await axios.post("http://localhost:8080/api/main-form", payload);
-      
+
       console.log("API call successful");
 
       // Download PDF AFTER successful form submission
@@ -92,12 +92,19 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
     } catch (err) {
       console.error("Form submission error:", err);
       console.error("Error response:", err.response?.data);
-      
+
       setPopup({
         show: true,
         type: "error",
         message: err.response?.data?.message || "Something went wrong! Please try again.",
       });
+
+      // Auto-close error popup and form after 3 seconds
+      setTimeout(() => {
+        setPopup((prev) => ({ ...prev, show: false }));
+        setShowForm(false);
+        if (onClose) onClose();
+      }, 3000);
     } finally {
       setSubmitting(false);
     }
@@ -108,25 +115,25 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
       console.error("PDF link is not defined!");
       return;
     }
-    
+
     try {
       const link = document.createElement("a");
       link.href = pdfLink;
       link.download = `Course-Brochure-${course || "SevenMentor"}.pdf`;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      
+
       // Append to body
       document.body.appendChild(link);
-      
+
       // Trigger download
       link.click();
-      
+
       // Clean up
       setTimeout(() => {
         document.body.removeChild(link);
       }, 100);
-      
+
       console.log("PDF download triggered");
     } catch (error) {
       console.error("Error downloading PDF:", error);
@@ -136,7 +143,7 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
   // Success popup component
   const SuccessPopup = () => (
     <div className="fixed inset-0 flex items-center justify-center z-[60]">
-      <div 
+      <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={() => {
           setPopup({ ...popup, show: false });
@@ -148,20 +155,20 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-12 h-12 text-green-600" />
           </div>
-          
+
           <h3 className="text-2xl font-bold text-gray-800 mb-2">
             Enrollment Successful! 🎉
           </h3>
-          
+
           <p className="text-gray-600 mb-6">
-            Thank you for enrolling in {course || "our course"}. 
+            Thank you for enrolling in {course || "our course"}.
             Our team will contact you within 24 hours.
           </p>
-          
+
           <p className="text-sm text-green-600 mb-6">
             ✅ PDF brochure download started
           </p>
-          
+
           <button
             onClick={() => {
               setPopup({ ...popup, show: false });
@@ -186,7 +193,7 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
         onClick={() => {
           setShowForm(false);
@@ -221,16 +228,31 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
                 </p>
               </div>
             </div>
-           
+
           </div>
 
           {/* Error Popup */}
           {popup.show && popup.type === "error" && (
-            <div className="absolute top-3 right-3 bg-white p-4 rounded-xl shadow-lg border min-w-[300px] z-50 animate-fadeIn">
-              <div className="flex items-center gap-3">
-                <XCircle className="text-red-600 w-8 h-8 flex-shrink-0" />
-                <div>
-                  <p className="font-medium text-gray-700">{popup.message}</p>
+            <div
+              className={`absolute top-0 left-0 right-0 p-4 transition-all duration-500 transform ${popup.show ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+                }`}
+            >
+              <div className="mx-auto max-w-sm rounded-xl shadow-2xl overflow-hidden border bg-white border-red-100">
+                <div className="h-1 w-full bg-red-500" />
+                <div className="p-4 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-red-100">
+                    <XCircle className="w-5 h-5 text-red-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-bold mb-1 text-red-800">Error!</h4>
+                    <p className="text-sm text-gray-600">{popup.message}</p>
+                  </div>
+                  <button
+                    onClick={() => setPopup((prev) => ({ ...prev, show: false }))}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <XCircle className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -353,15 +375,14 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
                   </div>
 
                   {/* Debug info (remove in production) */}
-              
+
                   {/* Submit Button */}
                   <div className="pt-4">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-4 rounded-xl font-bold shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all text-lg ${
-                        isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                      }`}
+                      className={`w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-4 rounded-xl font-bold shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all text-lg ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                        }`}
                     >
                       {isSubmitting ? (
                         <span className="flex items-center justify-center gap-3">
@@ -369,13 +390,13 @@ const DownloadPopupForm = ({ mailTo, course, contactNumber, onClose }) => {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
-                          Processing Enrollment...
+                          Downloading Syllabus...
                         </span>
                       ) : (
                         "Submit & Download PDF Brochure"
                       )}
                     </button>
-                    
+
                     <p className="text-center text-sm text-gray-600 mt-4">
                       By submitting, you'll receive the course brochure instantly
                     </p>
