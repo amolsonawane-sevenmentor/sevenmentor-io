@@ -17,13 +17,13 @@ export default function Footer() {
             >
               <span className="text-lg font-bold">f</span>
             </a>
-            <a
+            {/* <a
               href="https://x.com/SevenMentor"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-orange-500 transition"
               target="_blank"
             >
               <span className="text-lg font-bold">𝕏</span>
-            </a>
+            </a> */}
             <a
               href="https://www.youtube.com/@SevenMentor"
               className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-orange-500 transition"
