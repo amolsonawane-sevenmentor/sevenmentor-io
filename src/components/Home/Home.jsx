@@ -8,6 +8,7 @@ import {
   getCoursesByCategory,
   categories,
 } from './CourseCardData';
+import Link from 'next/link';
 
 function Home() {
   return (
@@ -112,12 +113,12 @@ function Home() {
             Join thousands of successful students and transform your career today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg transform hover:scale-105">
+            {/* <button className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg transform hover:scale-105">
               Browse All Courses
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-orange-600 transition-all duration-300 shadow-lg">
+            </button> */}
+            <Link href="/contact-us" className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-orange-600 transition-all duration-300 shadow-lg">
               Contact Us
-            </button>
+            </Link>
           </div>
         </div>
       </section>
