@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import EnrollForm from "../../../components/EnrollForm/EnrollForm.jsx";
 import PoupFormEnroll from "../../../components/EnrollForm/PoupFormEnroll.jsx";
-
+import DownloadPoupForm from "../../../components/EnrollForm/DownloadPoupForm.jsx"
 export default function CoursePage({ params }) {
   // Unwrap params using React.use()
   const unwrappedParams = use(params);
@@ -38,6 +38,7 @@ export default function CoursePage({ params }) {
   const [expandedModule, setExpandedModule] = useState(null);
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [form, setForm]= useState(false)
 
   const {
     heroData,
@@ -396,7 +397,7 @@ export default function CoursePage({ params }) {
 
 <div className="flex justify-center mt-8">
   <button
-    onClick={() => setShowForm((pre) => !pre)}
+    onClick={() => setForm((pre) => !pre)}
     className="group relative overflow-hidden bg-gradient-to-r from-orange-500 to-red-600 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-orange-400"
   >
     {/* Subtle shine effect */}
@@ -775,6 +776,17 @@ export default function CoursePage({ params }) {
           onClose={() => setShowForm(false)}
         />
       )}
+
+      {form&&(
+        <DownloadPoupForm
+        mailTo={contactEmail}
+        course={courseName}
+        contactNumber={contactNumber}
+        onClose={() => setForm(false)}
+        
+        />
+      )
+      }
     </div>
   );
 }

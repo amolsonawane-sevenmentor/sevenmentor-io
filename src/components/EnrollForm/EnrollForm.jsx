@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {
@@ -13,20 +13,21 @@ import {
 import axios from "axios";
 
 const EnrollForm = ({ mailTo, course, contactNumber }) => {
-  const [initialValues, setInitialValues] = useState({
-    Name: "",
-    Email: "",
-    Course: "",
-    Message: "",
-    PageUrl: typeof window !== "undefined" ? window.location.href : "",
-  });
-
-  // Popup state
   const [popup, setPopup] = useState({
     show: false,
     type: "", // success | error
     message: "",
   });
+
+  // Initialize form values
+  const initialValues = {
+    Name: "",
+    Email: "",
+    PhoneNumber: "",
+    Course: course || "",
+    Message: "",
+    PageUrl: typeof window !== "undefined" ? window.location.href : "",
+  };
 
   const validationSchema = Yup.object({
     Name: Yup.string()
@@ -43,8 +44,12 @@ const EnrollForm = ({ mailTo, course, contactNumber }) => {
     Message: Yup.string(),
   });
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+    setSubmitting(true);
+    
     try {
+      console.log("Submitting form with values:", values);
+      
       const payload = {
         formData: values,
         to: mailTo,
@@ -55,7 +60,11 @@ const EnrollForm = ({ mailTo, course, contactNumber }) => {
         userEmailSubject: "Thanks for Enrolling",
       };
 
-      await axios.post("/api/main-form", payload);
+      console.log("Sending payload:", payload);
+      
+      await axios.post("http://localhost:8080/api/main-form", payload);
+      
+      console.log("API Response:", response.data);
 
       // Show success popup
       setPopup({
@@ -65,21 +74,25 @@ const EnrollForm = ({ mailTo, course, contactNumber }) => {
       });
 
       resetForm();
+      
     } catch (err) {
-      console.error(err);
+      console.error("Form submission error:", err);
+      console.error("Error details:", err.response?.data);
 
-      // Show error popup
+      // Show error popup with more specific message
       setPopup({
         show: true,
         type: "error",
-        message: "Something went wrong!",
+        message: err.response?.data?.message || "Something went wrong! Please try again.",
       });
+    } finally {
+      setSubmitting(false);
+      
+      // Auto-hide popup after 3 seconds
+      setTimeout(() => {
+        setPopup((prev) => ({ ...prev, show: false }));
+      }, 3000);
     }
-
-    // Auto-hide popup after 3 seconds
-    setTimeout(() => {
-      setPopup((prev) => ({ ...prev, show: false }));
-    }, 3000);
   };
 
   return (
@@ -125,144 +138,154 @@ const EnrollForm = ({ mailTo, course, contactNumber }) => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
+            enableReinitialize={true}
           >
-            <Form className="space-y-6">
-              {/* Row 1 */}
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Name */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Full Name *
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <Field
+            {({ isSubmitting, errors, touched }) => (
+              <Form className="space-y-6">
+                {/* Row 1 */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Name */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Full Name *
+                    </label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Field
+                        name="Name"
+                        type="text"
+                        className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+                    <ErrorMessage
                       name="Name"
-                      type="text"
-                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
-                      placeholder="Enter your full name"
+                      component="p"
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
-                  <ErrorMessage
-                    name="Name"
-                    component="p"
-                    className="text-red-500 text-sm mt-1"
-                  />
-                </div>
 
-                {/* Email */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email Address *
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <Field
+                  {/* Email */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Field
+                        name="Email"
+                        type="email"
+                        className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
+                        placeholder="Enter your email"
+                      />
+                    </div>
+                    <ErrorMessage
                       name="Email"
-                      type="email"
-                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
-                      placeholder="Enter your email"
+                      component="p"
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
-                  <ErrorMessage
-                    name="Email"
-                    component="p"
-                    className="text-red-500 text-sm mt-1"
-                  />
                 </div>
-              </div>
 
-              {/* Row 2 */}
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Phone */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Phone Number *
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <Field
+                {/* Row 2 */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Phone Number *
+                    </label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Field
+                        name="PhoneNumber"
+                        type="tel"
+                        className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
+                        placeholder="Enter your phone number"
+                      />
+                    </div>
+                    <ErrorMessage
                       name="PhoneNumber"
-                      type="tel"
-                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
-                      placeholder="Enter your phone number"
+                      component="p"
+                      className="text-red-500 text-sm mt-1"
                     />
                   </div>
-                  <ErrorMessage
-                    name="PhoneNumber"
-                    component="p"
-                    className="text-red-500 text-sm mt-1"
-                  />
+
+                  {/* Course */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Course *
+                    </label>
+                    <div className="relative">
+                      <Award className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Field
+                        as="select"
+                        name="Course"
+                        className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl bg-white outline-none focus:ring-2 focus:ring-orange-500"
+                      >
+                        <option value="">Select a Course</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Ethical Hacking">Ethical Hacking</option>
+                        <option value="Network Security">Network Security</option>
+                        <option value="CEH Certification">CEH Certification</option>
+                        {course && <option value={course}>{course}</option>}
+                      </Field>
+                    </div>
+                    <ErrorMessage
+                      name="Course"
+                      component="p"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
                 </div>
 
-                {/* Course */}
-
+                {/* Message */}
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Course *
+                    Message (Optional)
                   </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <Field
-                      name="Course"
-                      type="text"
-                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none"
-                      placeholder="Enter Course"
-                    />
-                  </div>
-                  <ErrorMessage
-                    name="Name"
-                    component="p"
-                    className="text-red-500 text-sm mt-1"
+                  <Field
+                    as="textarea"
+                    name="Message"
+                    rows="4"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none resize-none"
+                    placeholder="Tell us about your background and goals..."
                   />
                 </div>
-                {/* <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Course *</label>
-                  <div className="relative">
-                    <Award className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <Field
-                      as="select"
-                      name="Course"
-                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl bg-white outline-none focus:ring-2 focus:ring-orange-500"
-                    >
-                      <option value="">Select a Course</option>
-                      <option value="Cyber Security">Cyber Security</option>
-                      <option value="Ethical Hacking">Ethical Hacking</option>
-                      <option value="Network Security">Network Security</option>
-                      <option value="CEH Certification">CEH Certification</option>
-                    </Field>
-                  </div>
-                  <ErrorMessage name="Course" component="p" className="text-red-500 text-sm mt-1" />
-                </div> */}
-              </div>
 
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Message (Optional)
-                </label>
-                <Field
-                  as="textarea"
-                  name="Message"
-                  rows="4"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none resize-none"
-                  placeholder="Tell us about your background and goals..."
-                />
-              </div>
+                {/* Submit */}
+                <div className="flex items-center gap-4">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`bg-gradient-to-r from-orange-500 to-orange-600 hover:scale-105 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg transition-all ${
+                      isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                    }`}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Enrollment"}
+                  </button>
+                  <p className="text-sm text-gray-600">
+                    Our team will contact you within 24 hours
+                  </p>
+                </div>
 
-              {/* Submit */}
-              <div className="flex items-center gap-4">
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:scale-105 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg transition-all"
-                >
-                  Submit Enrollment
-                </button>
-                <p className="text-sm text-gray-600">
-                  Our team will contact you within 24 hours
-                </p>
-              </div>
-            </Form>
+                {/* Debug info (remove in production) */}
+                <div className="mt-4 p-4 bg-gray-50 rounded-lg hidden">
+                  <h3 className="font-bold mb-2">Debug Info:</h3>
+                  <pre className="text-xs">
+                    {JSON.stringify(
+                      {
+                        errors,
+                        touched,
+                        isSubmitting,
+                        initialValues,
+                      },
+                      null,
+                      2
+                    )}
+                  </pre>
+                </div>
+              </Form>
+            )}
           </Formik>
         </div>
       </section>
